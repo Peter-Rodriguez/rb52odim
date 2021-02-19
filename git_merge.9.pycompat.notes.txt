@@ -1,0 +1,14 @@
+pycompat
+###################################################################################################
+Merge with rave-py3 found,
+- has different setBeamwH/V methods.
+- set L_RAVE_PY3 via PY_MAJOR_VERSION var from Python.h
+- use _rave.Debug_RAVE_WARNING level because rave_hlhdf_utilities INFO is too chatty
+
+Use Anders Henja [SMHI] "modules/pyrb52odim_compat.h" to build either Python2 or 3 module
+
+Update tools/run_python_script.sh to determine Python bin version according to ${RAVEROOT}/rave/mkf/def.mk
+
+Forwards py3 compatibility, `gunzip, tarfile, AssertionError, raise IOError()`
+###################################################################################################
+Merging via gui

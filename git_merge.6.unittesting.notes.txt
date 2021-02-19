@@ -1,0 +1,11 @@
+unittesting
+###################################################################################################
+WRT other branch merges,
+- xml_utils: how/beamw{H/V} now in REF file, but marked optional
+- gzip_handling: Added testIsGoodRB5gzInput()
+- ref_update: test/new/.gitignore
+- pycompat: assertEquals deprecated for assertEqual
+
+Exit code = 1 if any tests fail. 
+###################################################################################################
+Merging via gui

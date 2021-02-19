@@ -1,0 +1,13 @@
+fix_compile_big_pvol
+###################################################################################################
+compile_big_pvol
+- needed iterative sorting by elevation
+- should sort input param files as scan attribs are copied from 1st param file
+
+unittesting
+- new testCompileVolumeFromVolumes_vs_CombineRB5FilesReturnRIO()
+- more print debugging on attrib assertEqual testing
+- utest.assert...Equals ---> utest.assert...Equal
+- added reference file comments for RB5 version 
+###################################################################################################
+Merging via gui

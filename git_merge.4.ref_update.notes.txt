@@ -1,0 +1,6 @@
+ref_update
+###################################################################################################
+Re-organize unittesting files using folders, `org new ref`
+config/Makefile installs only odim_radar_table.xml
+###################################################################################################
+Merging via gui

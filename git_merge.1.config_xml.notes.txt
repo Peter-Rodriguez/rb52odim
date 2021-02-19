@@ -1,0 +1,46 @@
+config_xml
+###################################################################################################
+- Add base attribs,
+```
+/how/_orig_sensor_id
+/how/_orig_sensor_name
+```
+- "merge_odim_sources_2_odim_radar_table" to insert entries from odim_source.xml,
+```
+<?xml version='1.0' encoding='UTF-8'?>
+<radar-db author="Daniel Michelson">
+  <ca CCCC="CWAO" org="53">
+    <casra plc="Radisson SK"></casra>
+```
+into odim_radar_table.xml,
+```
+table ver="1.0" author="Peter Rodriguez" updated="2018-01-25">
+    <radar id="CASRA" bgn_date="2017-12-04" end_date="present">
+        <label>S-band at Radisson (NRP)</label>
+```
+Note,
+```
+Option to merge auxiliary odim_radar_table.xml
+All cax ids assumed to be Rainbow systems for rb52odim usage
+```
+- Added,
+```
+config/odim_radar_table.STB_research_Xbands.xml
+config/odim_radar_table.basic.xml
+config/odim_radar_table.rave_ec.2020-09.xml
+config/odim_radar_table.xml -> odim_radar_table.basic.xml #now a symlink
+config/odim_source.rave_ec.2020-09.xml
+```
+###################################################################################################
+Merging via command line
+Step 1: From your project repository, bring in the changes and test.
+
+git fetch origin
+git checkout -b config_xml origin/config_xml
+git merge 2021-02_stable
+
+Step 2: Merge the changes and update on GitHub.
+
+git checkout 2021-02_stable
+git merge --no-ff config_xml
+git push origin 2021-02_stable

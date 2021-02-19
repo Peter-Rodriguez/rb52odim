@@ -1,0 +1,281 @@
+# https://stackoverflow.com/questions/12540446/how-do-i-split-up-a-large-git-branch-into-lots-of-smaller-branches
+
+$  git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+$ git branch backup-before-rebase
+
+$ git log --oneline -n1
+34c13c8 (HEAD -> master, origin/master, origin/HEAD, backup-before-rebase) Exit code = 1 if any tests fail.
+    Exit code = 1 if any tests fail.
+
+# Let's set this commit to be the new_trunk HEAD
+# c339150	Daniel Michelson	2019-07-24 15:40	Merge pull request #12 from Peter-Rodriguez/mastergt
+
+$ git log --oneline -n1 c339150
+c339150 Merge pull request #12 from Peter-Rodriguez/master
+
+$ git checkout c339150 -b new_trunk
+$ git log --oneline -n1
+c339150 (HEAD -> new_trunk) Merge pull request #12 from Peter-Rodriguez/master
+
+# if there's an issue
+Resolve all conflicts manually, mark them as resolved with
+"git add/rm <conflicted_files>", then run "git rebase --continue".
+You can instead skip this commit: run "git rebase --skip".
+To abort and get back to the state before "git rebase", run "git rebase --abort".
+$ git rebase --abort
+
+git checkout master
+git branch -D <branch>
+#delete branch explicitly on github
+rm -fr "/home/vagrant/Projects/baltrad/rb52odim/.git/rebase-merge"
+
+###################################################################################################
+
+git checkout c339150 -b new_trunk
+
+###################################################################################################
+git checkout master
+git branch config_xml
+git checkout config_xml
+git rebase -i new_trunk    ## -i is for "Interactive"
+
+pick d1ed1d1 Added base attribs /how/_orig_sensor_id and /how/_orig_sensor_name. For traceability to failed odim_    radar_table.xml look-up.
+pick e87c056 Program to merge odim_sources (CWRRP) and STB research radar lists into rb52odim's odim_radar_table.    xml
+squash 83ade6d Program to merge odim_sources (CWRRP) and STB research radar lists into rb52odim's odim_radar_tabl    e.xml
+squash a8510d4 Fixed to use ordered dictionary and shallow copy the dict_radar_template
+squash 8ba40ac Improve odim table converter use of logging and print formatting
+squash af34e87 Fixed missing <\table>\n in merging odim_radar_table.xml
+squash f4dc3dd Fixed missing <\table>\n in merging odim_radar_table.xml
+squash 1fa3365 Change RUAD to NRP
+pick fb0bbec Update to command-line version; Assume all entries are Leonardo/Rainbow5 systems.
+pick 758b4a4 Created a basic odim_radar_table.xml, as user template and handles unittest data.
+squash 5ef412d ln -s odim_radar_table.basic.xml odim_radar_table.xml
+squash b95f9c0 Set 'ln -s odim_radar_table.basic.xml odim_radar_table.xml', as user template and handles unittest     data.
+
+git push --set-upstream origin config_xml
+git rebase -i new_trunk    ## -i is for "Interactive"
+git push -ff --set-upstream origin config_xml
+
+###################################################################################################
+git checkout master
+git branch noisepower
+git checkout noisepower
+git rebase -i new_trunk    ## -i is for "Interactive"
+
+pick c58c03c how/noisepower{h,v} now converted from IEEE 754 'single format' bit layout to 32 bit floating-point, and range corrected from 100km to 1km.
+pick 45eea64 Ignore how/noisepower{h/v}. Can be raw (long) or processed (double) values since conversion commit.
+
+Conflict:
+git rm config/odim_radar_table.xml
+git rebase --continue
+
+git push --set-upstream origin noisepower
+
+###################################################################################################
+git checkout master
+git branch xml_util
+git checkout xml_util
+git rebase -i new_trunk    ## -i is for "Interactive"
+
+pick a458222 Updated xml_util to use proper xmlNodeGetContent instead of (n)->content. Construction of /what/sour    ce=odim_source will check for missing, re: (null), admin_state.
+pick 5be67ad Fixed failed check for EMPTY get_xpath_slice_attrib == '' values. Add IFFY_ATTRIB_IGNORE=['how/my_foobar'...] to rb52odimTests.
+
+Conflict:
+git mergetool -t meld
+#remove IFFY_ATTRIB_IGNORE block
+git add <conflict resolved file>
+git rebase --continue
+
+#redo
+# src/rb52odim.c: strip out rave-py3: new _setBeamwH/V() methods
+# Lib/rb52odim.py: rollback pvol.addAttribute() list to one-liner method
+git stash save Lib/rb52odim.py src/rb52odim.c test/pytest/rb52odimTests.py
+git difftool -t meld stash@{0}:src/rb52odim.c src/rb52odim.c
+git difftool -t meld stash@{0}:Lib/rb52odim.py Lib/rb52odim.py
+
+git push --set-upstream origin xml_util
+
+###################################################################################################
+git checkout master
+git branch unittesting
+git checkout unittesting
+git rebase -i new_trunk    ## -i is for "Interactive"
+
+pick 6841c7f how/beamw{H/V} not in REF file... yet. Fix minor indent prob.
+pick 8052b34 assertEquals deprecated for assertEqual
+pick 3232550 Added testIsGoodRB5gzInput()
+pick 46838a0 Add test/tmp/.gitignore for unittesting.
+squash cbc59ce Add test/new/.gitignore for unittesting. Oops, not test/tmp/
+pick 34c13c8 Exit code = 1 if any tests fail.
+
+Conflict:
+git mergetool -t meld
+git add Lib/rb52odim.py
+git add test/pytest/rb52odimTests.py
+git add test/pytest/RB52ODIMTestSuite.py
+git rebase --continue
+
+git push --set-upstream origin unittesting
+
+###################################################################################################
+git checkout master
+git branch ref_update
+git checkout ref_update
+git rebase -i new_trunk    ## -i is for "Interactive"
+
+pick 3d22a2f Rework and update test reference files
+
+Conflict:
+git mergetool -t meld
+git add Lib/rb52odim.py
+git rm src/Makefile.w_rb5_2_odim_main src/rb5_2_odim_main.c test/script.to_make_ref_files.sh utils/odim_combine_sweeps.py utils/polar_merger.py utils/rb52odim_combine_files.py utils/rb52odim_combine_tarball.py
+git commit -a -m "Moved utils out"
+
+git push --set-upstream origin ref_update
+
+###################################################################################################
+git checkout master
+git branch my_utils
+git checkout my_utils
+git add src/Makefile.w_rb5_2_odim_main src/rb5_2_odim_main.c test/script.to_make_ref_files.sh utils/odim_combine_sweeps.py utils/polar_merger.py utils/rb52odim_combine_files.py utils/rb52odim_combine_tarball.py
+git rebase -i new_trunk    ## -i is for "Interactive"
+
+pick 647e4b4 Sample fix to convert rb5 noisepower from uint to float and range correct to 1km
+squash e97dc00 small edit to convert_rb5_noise.py
+
+git add utils/rb52odim_combine_tarball.py utils/odim_combine_sweeps.py
+git rebase --continue
+
+git push --set-upstream origin my_utils
+
+###################################################################################################
+git checkout master
+git branch gzip_handling
+git checkout gzip_handling
+git rebase -i new_trunk    ## -i is for "Interactive"
+
+pick c70276c isRainbow5() handles and reports rb5 .gz files as True.
+
+git push --set-upstream origin gzip_handling
+
+###################################################################################################
+git checkout master
+git branch fix_compile_big_pvol
+git checkout fix_compile_big_pvol
+git rebase -i new_trunk    ## -i is for "Interactive"
+
+pick e2f870d Ensure compile_pvol & combine_pvol have the same sorted input files (param list will be different order otherwise). Add validateTopLevel(), so need adjustTime=False.
+pick ba95999 Ensure compile_big_pvol() produces scan order equal to input. Add unittest between CompileVolumeFromVolumes() and CombineRB5Files(). Improve assertEqual failure print statement.
+pick 5ce9f91 compile_big_pvol() needs sorting of input by elevation. Caused big_scan.addParameter(param) to fault due to inconsistent (nrays,nbins) across scans.
+
+Conflict:
+git mergetool -t meld
+git rebase --continue
+
+git push --set-upstream origin fix_compile_big_pvol
+
+###################################################################################################
+git checkout master
+git branch pol_txpower
+git checkout pol_txpower
+git rebase -i new_trunk    ## -i is for "Interactive"
+
+pick 49d230f Note: compiled/combined scan's Attribute('how/peakpwr') is set by first param encountered!
+pick c490f9a Add 'how/TXpower' 'single-pol_' and 'dual-pol_' flavoured scan attributes.
+pick 031e01b Updated rb5_util lib for rb5 param mapping, dualpol txpower query, and slice_pw_microsec (fix)
+pick 73de408 Add slice_pw_microsec to L_VERBOSE output.
+
+Conflict:
+git mergetool -t meld
+git rebase --continue
+
+git push --set-upstream origin pol_txpower
+
+###################################################################################################
+git checkout master
+git branch pycompat
+git checkout pycompat
+git rebase -i new_trunk    ## -i is for "Interactive"
+
+pick 7990113 Make forward py3 compatible, via L_RAVE_PY3, for setBeamwH/V methods.
+pick 9ca8327 if L_RAVE_PY3 == 0, then implicit declarations.
+pick 635744c Make forward py3 compatible, AssertionError
+squash 001c01c Syntax upgrade for raise IOError()
+pick e16bb07 Forwards py3 compatibility for gunzip & tarfile
+pick 7225414 Upgrade modules to use pyrb52odim_compat
+squash fce9684 Add pyrb52odim_compat.h header
+pick 364c737 Consistent tests with -py3. Default to system's python (as per rave-py3).
+
+Conflict:
+git mergetool -t meld
+git rebase --continue
+
+git push --set-upstream origin pycompat
+
+###################################################################################################
+
+$ git checkout master
+$ git branch -a
+  backup-before-rebase
+  config_xml
+  fix_compile_big_pvol
+  gzip_handling
+* master
+  my_utils
+  new_trunk
+  noisepower
+  pol_txpower
+  pycompat
+  ref_update
+  unittesting
+  xml_util
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/backup-before-rebase
+  remotes/origin/config_xml
+  remotes/origin/fix_compile_big_pvol
+  remotes/origin/gzip_handling
+  remotes/origin/master
+  remotes/origin/my_utils
+  remotes/origin/noisepower
+  remotes/origin/pol_txpower
+  remotes/origin/pycompat
+  remotes/origin/ref_update
+  eemotes/origin/unittesting
+  remotes/origin/xml_util
+
+$ git checkout c339150 -b 2021-02_stable
+git push --set-upstream origin 2021-02_stable
+
+###################################################################################################
+Pull request order into "2021-02_stable"
+  config_xml
+  noisepower
+  xml_util
+  ref_update
+  gzip_handling
+  unittesting
+  fix_compile_big_pvol
+  pol_txpower
+  pycompat
+###################################################################################################
+$ git pull --all
+Fetching origin
+remote: Enumerating objects: 50, done.
+remote: Counting objects: 100% (50/50), done.
+remote: Compressing objects: 100% (50/50), done.
+remote: Total 50 (delta 23), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (50/50), done.
+From github.com:Peter-Rodriguez/rb52odim
+   9692dc6..a460a55  2021-02_stable       -> origin/2021-02_stable
+   1ccabb0..9641ff7  fix_compile_big_pvol -> origin/fix_compile_big_pvol
+   460cd0d..9b6ddac  pol_txpower          -> origin/pol_txpower
+   0da60f8..ad9d4d0  pycompat             -> origin/pycompat
+   64bb8a6..076cec1  ref_update           -> origin/ref_update
+   2f8129c..e4e8db5  unittesting          -> origin/unittesting
+   9e59cd1..6a869eb  xml_util             -> origin/xml_util
+Already up to date.
+

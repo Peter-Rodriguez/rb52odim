@@ -1,0 +1,8 @@
+pol_txpower
+###################################################################################################
+- Created is_rb5_param_dualpol() to indicate whether how/TXpower is "single-pol" or "dual-pol"
+- New attrib how/pol_of_txpower="single" or "dual"
+- how/TXpower replicated accordingly as how/single-pol_TXpower or how/dual-pol_TXpower
+- Note: combined/compiled scan's power attribs are copied from 1st param file
+###################################################################################################
+Merging via gui

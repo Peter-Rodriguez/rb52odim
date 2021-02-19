@@ -1,0 +1,9 @@
+xml_util
+###################################################################################################
+Update support xml library,
+- xmlNodeGetContent function has checks for null pointers at cur, children, and content. Will now return (null) instead of "".
+- gzip handling
+- new return_xpath_value() != NULL checks
+- temporary addition of unittesting IFFY_ATTRIB_IGNORE attribs until reference file are updated
+###################################################################################################
+Merging via command line
