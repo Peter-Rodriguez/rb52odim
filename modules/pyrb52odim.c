@@ -1,5 +1,5 @@
 /* --------------------------------------------------------------------
-Copyright (C) 2016 The Crown (i.e. Her Majesty the Queen in Right of Canada)
+Copyright (C) 2020 The Crown (i.e. Her Majesty the Queen in Right of Canada)
 
 This file is an add-on to RAVE.
 
@@ -20,13 +20,17 @@ along with RAVE.  If not, see <http://www.gnu.org/licenses/>.
  * Python wrapper to RB52ODIM
  * @file
  * @author Daniel Michelson, Environment Canada
- * @date 2016-08-17
+ * @date 2015-10-28
+ * @author Peter Rodriguez, Environment Canada
+ * @date 2020-09-01, upgrade to use Python >2.6 and Python 3 compatibility file
  */
-#include "Python.h"
+#include "pyrb52odim_compat.h"
 #include "arrayobject.h"
 #include "rave.h"
 #include "rave_debug.h"
 #include "pyraveio.h"
+#include "pypolarvolume.h"
+#include "pypolarscan.h"
 #include "pyrave_debug.h"
 #include "rb52odim.h"
 
@@ -73,7 +77,8 @@ static PyObject* _isRainbow5buf_func(PyObject* self, PyObject* args) {
   if (!PyArg_ParseTuple(args, "O", &obj)) {;
     return PyBool_FromLong(0);  /* False */
   }
-  if (PyObject_TypeCheck(obj, &PyBaseString_Type)) {;
+//py2  if (PyObject_TypeCheck(obj, &PyBaseString_Type)) {;
+  if (PyObject_TypeCheck(obj, &PyBaseObject_Type)) {;
     if (!PyArg_ParseTuple(args, "s#", &rb5_buffer, &buffer_len)) {
         return PyBool_FromLong(0);  /* False */
     }
@@ -189,19 +194,29 @@ static struct PyMethodDef _rb52odim_functions[] =
 /**
  * Initialize the _rb52odim module
  */
-PyMODINIT_FUNC init_rb52odim(void)
+MOD_INIT(_rb52odim)
 {
-  PyObject* m;
-  m = Py_InitModule("_rb52odim", _rb52odim_functions);
-  ErrorObject = PyString_FromString("_rb52odim.error");
-
-  if (ErrorObject == NULL || PyDict_SetItemString(PyModule_GetDict(m),
-                                                  "error", ErrorObject) != 0) {
-    Py_FatalError("Can't define _rb52odim.error");
+  PyObject* module = NULL;
+  PyObject* dictionary = NULL;
+  
+  MOD_INIT_DEF(module, "_rb52odim", NULL/*doc*/, _rb52odim_functions);
+  if (module == NULL) {
+    return MOD_INIT_ERROR;
   }
+
+  dictionary = PyModule_GetDict(module);
+  ErrorObject = PyErr_NewException("_rb52odim.error", NULL, NULL);
+  if (ErrorObject == NULL || PyDict_SetItemString(dictionary, "error", ErrorObject) != 0) {
+    Py_FatalError("Can't define _rb52odim.error");
+    return MOD_INIT_ERROR;
+  }
+
   import_pyraveio();
+  import_pypolarvolume();
+  import_pypolarscan();
   import_array(); /*To make sure I get access to numpy*/
   PYRAVE_DEBUG_INITIALIZE;
+  return MOD_INIT_SUCCESS(module);
 }
 
 /*@} End of Module setup */

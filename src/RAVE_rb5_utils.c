@@ -3,16 +3,20 @@
  *
  * Author: Peter Rodriguez 2016-Sep-22
  *
- * 2016-09-21: PR scp -p lancelot:/home/prodrigu/Projects/RAINBOW/rb5_probe/rb5_utils.c .
- *                cp -p RAVE_rb5_utils.c RAVE_rb5_utils.c.bak
- *                cp -p rb5_utils.c RAVE_rb5_utils.c
- *                vi RAVE_rb5_utils.c
- *                Modify to replace malloc() & free() to RAVE_MALLOC() & RAVE_FREE() accordingly
- *                This file to replace header and includes,
- *                - vi cmd: dd #until all orig lines gone upto 1st comment line 
- *                - vi cmd: :0r head_RAVE_rb5_utils.c.txt
- *                - vi cmd: :24,$s/malloc(/RAVE_MALLOC(/g
- *                - vi cmd: :24,$s/free(/RAVE_FREE(/g
+ * 2021-02-08: "rb5_utils" maintained under "rb5_probe" project
+ *             git@gitlab.science.gc.ca:per001/rb5_probe.git #(fetch)
+ *             git pull origin master #in $HOME/Projects/RAINBOW/rb5_probe/
+ *             scp -pv $HOME/Projects/RAINBOW/rb5_probe/rb5_utils.h .
+ *             scp -pv $HOME/Projects/RAINBOW/rb5_probe/rb5_utils.c .
+ * 2016-09-21: cp -p RAVE_rb5_utils.c RAVE_rb5_utils.c.bak
+ *             cp -p rb5_utils.c RAVE_rb5_utils.c
+ *             vi RAVE_rb5_utils.c
+ *             Modify to replace malloc() & free() to RAVE_MALLOC() & RAVE_FREE() accordingly
+ *             This file to replace header and includes,
+ *             - vi cmd: dd #until all orig lines gone upto 1st comment line 
+ *             - vi cmd: :0r head_RAVE_rb5_utils.c.txt
+ *             - vi cmd: :27,$s/malloc(/RAVE_MALLOC(/g
+ *             - vi cmd: :27,$s/free(/RAVE_FREE(/g
  */
 
 #include "rave_alloc.h"
@@ -345,35 +349,76 @@ size_t return_param_blobid_raw(strRB5_INFO *rb5_info, strRB5_PARAM_INFO* rb5_par
 
 char *map_rb5_to_h5_param(char *sparam){
 
-  static char return_string[MAX_STRING]="\0";
+    static char return_string[MAX_STRING]="\0";
 
-               if (strcmp(sparam, "dBuZ"  ) == 0 ){; strcpy(return_string,"TH");
-        } else if (strcmp(sparam, "dBuZv" ) == 0 ){; strcpy(return_string,"TV");
-        } else if (strcmp(sparam, "dBZ"   ) == 0 ){; strcpy(return_string,"DBZH");
-//        } else if (strcmp(sparam, "dBZv"  ) == 0 ){; strcpy(return_string,"DBZV");
-        } else if (strcmp(sparam, "V"     ) == 0 ){; strcpy(return_string,"VRADH");
-        } else if (strcmp(sparam, "Vv"    ) == 0 ){; strcpy(return_string,"VRADV");
-        } else if (strcmp(sparam, "W"     ) == 0 ){; strcpy(return_string,"WRADH");
-        } else if (strcmp(sparam, "Wv"    ) == 0 ){; strcpy(return_string,"WRADV");
-        } else if (strcmp(sparam, "SNR"   ) == 0 ){; strcpy(return_string,"SNRH");
-//        } else if (strcmp(sparam, "SNRv"  ) == 0 ){; strcpy(return_string,"SNRV");
-        } else if (strcmp(sparam, "SQI"   ) == 0 ){; strcpy(return_string,"SQIH");
-//        } else if (strcmp(sparam, "SQIv"  ) == 0 ){; strcpy(return_string,"SQIV");
-//        } else if (strcmp(sparam, "ZDR"   ) == 0 ){; strcpy(return_string,"ZDR");
-//        } else if (strcmp(sparam, "RhoHV" ) == 0 ){; strcpy(return_string,"RHOHV");
-//        } else if (strcmp(sparam, "uPhiDP") == 0 ){; strcpy(return_string,"uPHIDP");
-//        } else if (strcmp(sparam, "PhiDP" ) == 0 ){; strcpy(return_string,"PHIDP");
-//        } else if (strcmp(sparam, "KDP"   ) == 0 ){; strcpy(return_string,"KDP");
-        } else if (strcmp(sparam, "ET"   ) == 0 ){; strcpy(return_string,"CLASS");
-        } else {
-            strcpy(return_string,sparam);
-            int i;
-            for(i=0;i<strlen(return_string);i++){
-                return_string[i]=toupper(return_string[i]);
-            }
+    //reference:
+    // RB5_FileFormat_5510.pdf, 2.2.3.4.1 Array "datamap", pg 21-22, "Data types"
+    // RB5_UserGuide_5430.pdf, 4.10.2.4 Data Types, pg 81-82
+
+           if (strcmp(sparam, "dBZ"    ) == 0 ){; strcpy(return_string,"DBZH");
+    } else if (strcmp(sparam, "dBZv"   ) == 0 ){; strcpy(return_string,"DBZV");
+    } else if (strcmp(sparam, "dBuZ"   ) == 0 ){; strcpy(return_string,"TH");
+    } else if (strcmp(sparam, "dBuZv"  ) == 0 ){; strcpy(return_string,"TV");
+    } else if (strcmp(sparam, "V"      ) == 0 ){; strcpy(return_string,"VRADH");
+    } else if (strcmp(sparam, "Vv"     ) == 0 ){; strcpy(return_string,"VRADV");
+    } else if (strcmp(sparam, "Vu"     ) == 0 ){; strcpy(return_string,"UVRADH");
+    } else if (strcmp(sparam, "Vvu"    ) == 0 ){; strcpy(return_string,"UVRADV");
+    } else if (strcmp(sparam, "W"      ) == 0 ){; strcpy(return_string,"WRADH");
+    } else if (strcmp(sparam, "Wv"     ) == 0 ){; strcpy(return_string,"WRADV");
+    } else if (strcmp(sparam, "Wu"     ) == 0 ){; strcpy(return_string,"UWRADH");
+    } else if (strcmp(sparam, "Wvu"    ) == 0 ){; strcpy(return_string,"UWRADV");
+
+    } else if (strcmp(sparam, "ZDR"    ) == 0 ){; strcpy(return_string,"ZDR");
+    } else if (strcmp(sparam, "ZDRu"   ) == 0 ){; strcpy(return_string,"UZDR");
+    } else if (strcmp(sparam, "PhiDP"  ) == 0 ){; strcpy(return_string,"PHIDP");
+    } else if (strcmp(sparam, "uPhiDP" ) == 0 ){; strcpy(return_string,"UPHIDP");
+    } else if (strcmp(sparam, "uPhiDPu") == 0 ){; strcpy(return_string,"UPHIDPU");
+    } else if (strcmp(sparam, "KDP"    ) == 0 ){; strcpy(return_string,"KDP");
+    } else if (strcmp(sparam, "uKDP"   ) == 0 ){; strcpy(return_string,"UKDP");
+    } else if (strcmp(sparam, "uKDPu"  ) == 0 ){; strcpy(return_string,"UKDPU");
+    } else if (strcmp(sparam, "RhoHV"  ) == 0 ){; strcpy(return_string,"RHOHV");
+    } else if (strcmp(sparam, "RhoHVu" ) == 0 ){; strcpy(return_string,"URHOHV");
+
+    } else if (strcmp(sparam, "SQI"    ) == 0 ){; strcpy(return_string,"SQIH");
+    } else if (strcmp(sparam, "SQIv"   ) == 0 ){; strcpy(return_string,"SQIV");
+    } else if (strcmp(sparam, "SQIu"   ) == 0 ){; strcpy(return_string,"USQIH");
+    } else if (strcmp(sparam, "SQIvu"  ) == 0 ){; strcpy(return_string,"USQIV");
+    } else if (strcmp(sparam, "SNR"    ) == 0 ){; strcpy(return_string,"SNRH");
+    } else if (strcmp(sparam, "SNRv"   ) == 0 ){; strcpy(return_string,"SNRV");
+    } else if (strcmp(sparam, "SNRu"   ) == 0 ){; strcpy(return_string,"USNRH");
+    } else if (strcmp(sparam, "SNRvu"  ) == 0 ){; strcpy(return_string,"USNRV");
+
+    } else if (strcmp(sparam, "ET"     ) == 0 ){; strcpy(return_string,"CLASS");
+
+    } else {
+        strcpy(return_string,sparam);
+        int i;
+        for(i=0;i<strlen(return_string);i++){
+            return_string[i]=toupper(return_string[i]);
         }
+    }
+
     return(return_string);
 
+}
+
+//#############################################################################
+
+int is_rb5_param_dualpol(char *sparam){
+
+           if (strcmp(sparam, "ZDR"    ) == 0 ){; return(1);
+    } else if (strcmp(sparam, "ZDRu"   ) == 0 ){; return(1);
+    } else if (strcmp(sparam, "PhiDP"  ) == 0 ){; return(1);
+    } else if (strcmp(sparam, "uPhiDP" ) == 0 ){; return(1);
+    } else if (strcmp(sparam, "uPhiDPu") == 0 ){; return(1);
+    } else if (strcmp(sparam, "KDP"    ) == 0 ){; return(1);
+    } else if (strcmp(sparam, "uKDP"   ) == 0 ){; return(1);
+    } else if (strcmp(sparam, "uKDPu"  ) == 0 ){; return(1);
+    } else if (strcmp(sparam, "RhoHV"  ) == 0 ){; return(1);
+    } else if (strcmp(sparam, "RhoHVu" ) == 0 ){; return(1);
+    } else {
+        return(0);
+    }
 }
 
 //#############################################################################
@@ -546,9 +591,9 @@ int populate_rb5_info(strRB5_INFO *rb5_info, int L_VERBOSE){
     }
 
     if(L_VERBOSE){
-        fprintf(stdout,"%s = %s\n", "rb5_info->inp_file_dirname", rb5_info->inp_file_dirname);
-        fprintf(stdout,"%s = %s\n", "rb5_info->inp_file_basename", rb5_info->inp_file_basename);
-        fprintf(stdout,"%s = %s\n", "rb5_info->inp_file_data_type", rb5_info->inp_file_data_type);
+        fprintf(stdout,"%-32s = %s\n", "rb5_info->inp_file_dirname", rb5_info->inp_file_dirname);
+        fprintf(stdout,"%-32s = %s\n", "rb5_info->inp_file_basename", rb5_info->inp_file_basename);
+        fprintf(stdout,"%-32s = %s\n", "rb5_info->inp_file_data_type", rb5_info->inp_file_data_type);
     }
 
     strRB5_PARAM_INFO rb5_param;
@@ -571,10 +616,10 @@ int populate_rb5_info(strRB5_INFO *rb5_info, int L_VERBOSE){
     strcpy(rb5_info->xml_block_iso8601,return_xpath_value(xpathCtx,"/volume/@datetime"));
     strncpy(rb5_info->xml_block_iso8601+10," ",1); //blank T-delimiter
     if(L_VERBOSE){
-        fprintf(stdout,"%s = %s\n", "rb5_info->rainbow_version"  , rb5_info->rainbow_version);
-        fprintf(stdout,"%s = %s\n", "rb5_info->xml_block_name"   , rb5_info->xml_block_name);
-        fprintf(stdout,"%s = %s\n", "rb5_info->xml_block_type"   , rb5_info->xml_block_type);
-        fprintf(stdout,"%s = %s\n", "rb5_info->xml_block_iso8601", rb5_info->xml_block_iso8601);
+        fprintf(stdout,"%-32s = %s\n", "rb5_info->rainbow_version"  , rb5_info->rainbow_version);
+        fprintf(stdout,"%-32s = %s\n", "rb5_info->xml_block_name"   , rb5_info->xml_block_name);
+        fprintf(stdout,"%-32s = %s\n", "rb5_info->xml_block_type"   , rb5_info->xml_block_type);
+        fprintf(stdout,"%-32s = %s\n", "rb5_info->xml_block_iso8601", rb5_info->xml_block_iso8601);
     }
 
     strcpy(xpath_bgn,"/volume/sensorinfo");
@@ -586,13 +631,13 @@ int populate_rb5_info(strRB5_INFO *rb5_info, int L_VERBOSE){
            rb5_info->sensor_wavelength_cm=atof(return_xpath_value(xpathCtx,strcat(strcpy(xpath,xpath_bgn),"/wavelen")))*100.;
            rb5_info->sensor_beamwidth_deg=atof(return_xpath_value(xpathCtx,strcat(strcpy(xpath,xpath_bgn),"/beamwidth")));
     if(L_VERBOSE){
-        fprintf(stdout,"%s = %s\n"  , "rb5_info->sensor_id"           , rb5_info->sensor_id);
-        fprintf(stdout,"%s = %s\n"  , "rb5_info->sensor_name"         , rb5_info->sensor_name);
-        fprintf(stdout,"%s = %.5f\n", "rb5_info->sensor_lon_deg"      , rb5_info->sensor_lon_deg);
-        fprintf(stdout,"%s = %.5f\n", "rb5_info->sensor_lat_deg"      , rb5_info->sensor_lat_deg);
-        fprintf(stdout,"%s = %.1f\n", "rb5_info->sensor_alt_m"        , rb5_info->sensor_alt_m);
-        fprintf(stdout,"%s = %.3f\n", "rb5_info->sensor_wavelength_cm", rb5_info->sensor_wavelength_cm);
-        fprintf(stdout,"%s = %.2f\n", "rb5_info->sensor_beamwidth_deg", rb5_info->sensor_beamwidth_deg);
+        fprintf(stdout,"%-32s = %s\n"    , "rb5_info->sensor_id"           , rb5_info->sensor_id);
+        fprintf(stdout,"%-32s = %s\n"    , "rb5_info->sensor_name"         , rb5_info->sensor_name);
+        fprintf(stdout,"%-32s = %10.5f\n", "rb5_info->sensor_lon_deg"      , rb5_info->sensor_lon_deg);
+        fprintf(stdout,"%-32s = %10.5f\n", "rb5_info->sensor_lat_deg"      , rb5_info->sensor_lat_deg);
+        fprintf(stdout,"%-32s = %6.1f\n" , "rb5_info->sensor_alt_m"        , rb5_info->sensor_alt_m);
+        fprintf(stdout,"%-32s = %6.3f\n" , "rb5_info->sensor_wavelength_cm", rb5_info->sensor_wavelength_cm);
+        fprintf(stdout,"%-32s = %4.2f\n" , "rb5_info->sensor_beamwidth_deg", rb5_info->sensor_beamwidth_deg);
     }
 
     rb5_info->history_exists=0;
@@ -640,19 +685,20 @@ int populate_rb5_info(strRB5_INFO *rb5_info, int L_VERBOSE){
     strncpy(rb5_info->scan_name,stmpa,strlen(stmpa)-strlen(rb5_info->scan_type)-1);
     rb5_info->scan_name[strlen(stmpa)-strlen(rb5_info->scan_type)-1]='\0'; // place the null terminator
     if(L_VERBOSE){
-        fprintf(stdout,"%s = %s\n", "rb5_info->scan_name"           , rb5_info->scan_name);
-        fprintf(stdout,"%s = %s\n", "rb5_info->scan_type"           , rb5_info->scan_type);
+        fprintf(stdout,"%-32s = %s\n", "rb5_info->scan_name"           , rb5_info->scan_name);
+        fprintf(stdout,"%-32s = %s\n", "rb5_info->scan_type"           , rb5_info->scan_type);
     }
 
     int this_slice=0;
     size_t this_rayinfo;
     size_t this_rawdata;
+    int L_RB5_PARAM_QUIET=0;
     int L_RB5_PARAM_VERBOSE=L_VERBOSE;
 
     //init
     rb5_info->iray_0degN[this_slice]=-1;
 
-    //RAYINFO
+    //RAYINFO (keep rayinfo_name_arr only)
     sprintf(xpath_bgn,"((/volume/scan/slice)[%2d]/slicedata/%s)",this_slice+1,"rayinfo");
     rb5_info->n_rayinfos=get_xpath_size(xpathCtx,xpath_bgn);
     for (this_rayinfo = 0; this_rayinfo < rb5_info->n_rayinfos; this_rayinfo++){
@@ -674,12 +720,12 @@ int populate_rb5_info(strRB5_INFO *rb5_info, int L_VERBOSE){
       fprintf(stdout,"]\n");
     }
 
-    //RAWDATA
+    //RAWDATA (keep rawdata_name_arr only; quietly)
     sprintf(xpath_bgn,"((/volume/scan/slice)[%2d]/slicedata/%s)",this_slice+1,"rawdata");
     rb5_info->n_rawdatas=get_xpath_size(xpathCtx,xpath_bgn);
     for (this_rawdata = 0; this_rawdata < rb5_info->n_rawdatas; this_rawdata++){
       sprintf(xpath_bgn,"((/volume/scan/slice)[%2d]/slicedata/%s)[%2ld]/",this_slice+1,"rawdata",this_rawdata+1);
-      rb5_param=get_rb5_param_info(rb5_info,xpath_bgn,L_RB5_PARAM_VERBOSE);
+      rb5_param=get_rb5_param_info(rb5_info,xpath_bgn,L_RB5_PARAM_QUIET);
       strcpy(rb5_info->rawdata_name_arr[this_rawdata],rb5_param.sparam);
     } //for (this_rawdata = 0; this_rawdata < rb5_info->n_rawdatas; this_rawdata++){
 
@@ -709,24 +755,6 @@ int populate_rb5_info(strRB5_INFO *rb5_info, int L_VERBOSE){
         //init
         rb5_info->iray_0degN[this_slice]=-1;
 
-        //update dims
-            strcpy(req_rawdata_name,"dBZ"); //mandatory
-       if(strcmp(rb5_info->inp_file_data_type, "ALL") == 0){
-           strcpy(req_rawdata_name,"dBZ"); //mandatory
-       } else {
-           strcpy(req_rawdata_name,rb5_info->inp_file_data_type); //self
-       }
-        idx_req=find_in_string_arr(rb5_info->rawdata_name_arr,rb5_info->n_rawdatas,req_rawdata_name);
-        if(idx_req == -1) {
-            fprintf(stdout,"IMPOSSIBLE: %s not found\n", req_rawdata_name);
-        } else {
-            sprintf(xpath_bgn,"((/volume/scan/slice)[%2d]/slicedata/%s)[%2d]/",this_slice+1,"rawdata",idx_req+1);
-            rb5_param=get_rb5_param_info(rb5_info,xpath_bgn,L_RB5_PARAM_VERBOSE);
-            rb5_info->nrays[this_slice]=rb5_param.nrays;
-            rb5_info->nbins[this_slice]=rb5_param.nbins;
-            rb5_info->n_elems_data[this_slice]=rb5_param.n_elems_data;
-        }
-
         sprintf(xpath_bgn,"(/volume/scan/slice)[%2d]",this_slice+1);
         // Note: using get_xpath_slice_attrib() to cycle thru 0th slice upward
         strcpy(rb5_info->slice_iso8601_bgn      [this_slice],get_xpath_iso8601_attrib(xpathCtx,strcat(strcpy(xpath,xpath_bgn),"/slicedata/")));
@@ -741,34 +769,23 @@ int populate_rb5_info(strRB5_INFO *rb5_info, int L_VERBOSE){
                rb5_info->slice_ray_angle_bgn_deg[this_slice]= atof(get_xpath_slice_attrib(xpathCtx,this_slice,"/startangle"));
                rb5_info->slice_ray_angle_end_deg[this_slice]= atof(get_xpath_slice_attrib(xpathCtx,this_slice,"/stopangle"));
         //NOTE: since Rainbow v5.51 (re: CWRRP), pulse width determination via XML tag <pw_index> was replaced by <dynpw>
-        size_t slice_pw_index;
-        float slice_pw_microsec;
         static char tmp_a[MAX_STRING]="\0";
-        strcpy(tmp_a,get_xpath_slice_attrib(xpathCtx,this_slice,"/dynpw"));
-        if(tmp_a[0] != '\0') {
-               slice_pw_index=(size_t) 0;
-               slice_pw_microsec=atof(tmp_a);
+        if(strcmp(strcpy(tmp_a,get_xpath_slice_attrib(xpathCtx,this_slice,"/dynpw")),"")) {
+               rb5_info->slice_pw_index         [this_slice]=0; //radconst now a scalar
+               rb5_info->slice_pw_microsec      [this_slice]=atof(tmp_a);
         } else {
-               strcpy(tmp_a,get_xpath_slice_attrib(xpathCtx,this_slice,"/pw_index"));
-               if(tmp_a[0] != '\0') {
-                    slice_pw_index=atoi(tmp_a);
-                    if(slice_pw_index == 0){
-                        slice_pw_microsec=0.3;
-                    } else if(slice_pw_index == 1) {
-                        slice_pw_microsec=1.0;
-                    } else if(slice_pw_index == 2) {
-                        slice_pw_microsec=2.0;
-                    } else if(slice_pw_index == 3) {
-                        slice_pw_microsec=3.3;
-                    }
+               size_t slice_pw_index=atoi(get_xpath_slice_attrib(xpathCtx,this_slice,"/pw_index"));
+               rb5_info->slice_pw_index         [this_slice]=slice_pw_index;
+               if(slice_pw_index == 0){
+                 rb5_info->slice_pw_microsec    [this_slice]=0.3;
+               } else if(slice_pw_index == 1) {
+                 rb5_info->slice_pw_microsec    [this_slice]=1.0;
+               } else if(slice_pw_index == 2) {
+                 rb5_info->slice_pw_microsec    [this_slice]=2.0;
+               } else if(slice_pw_index == 3) {
+                 rb5_info->slice_pw_microsec    [this_slice]=3.3;
                }
         }
-        if(L_VERBOSE){
-            fprintf(stdout,"%s = %ld\n", "slice_pw_index", slice_pw_index);
-            fprintf(stdout,"%s = %f\n", "slice_pw_microsec", slice_pw_microsec);
-        }
-               rb5_info->slice_pw_index         [this_slice]=slice_pw_index;
-               rb5_info->slice_pw_microsec      [this_slice]=slice_pw_microsec;
 
                rb5_info->slice_antspeed_deg_sec [this_slice]= atof(get_xpath_slice_attrib(xpathCtx,this_slice,"/antspeed"));
                rb5_info->slice_antspeed_rpm     [this_slice]= rb5_info->slice_antspeed_deg_sec [this_slice]/360.*60.;
@@ -810,24 +827,22 @@ int populate_rb5_info(strRB5_INFO *rb5_info, int L_VERBOSE){
         }
         rb5_info->slice_radconst_v[this_slice]=atof(pw_array[rb5_info->slice_pw_index[this_slice]]);
 
-        if(L_VERBOSE){
-            strncpy(stmpa,rb5_info->slice_dual_prf_mode[this_slice]+strlen("SdfDPrfMode"),3);
-            stmpa[3]='\0'; //add NULL terminator
-            fprintf(stdout," %s -> %s @ %05.2f deg, %5.3f km_res, %4.2f deg_res, %4.2f us_pw, %4ld samples, PRF(%3s)=%4.0f/%4.0f (%s to %s, %.3f sec)\n",
-                xpath_bgn,
-                     return_xpath_value(xpathCtx,strcat(strcpy(xpath,xpath_bgn),"/slicedata/rawdata/@type")),
-                rb5_info->angle_deg_arr[this_slice],
-                rb5_info->slice_bin_range_res_km[this_slice],
-                rb5_info->slice_ray_angle_res_deg[this_slice],
-                rb5_info->slice_pw_microsec[this_slice],
-                rb5_info->slice_num_samples[this_slice],
-                stmpa,
-                rb5_info->slice_hi_prf[this_slice],
-                rb5_info->slice_lo_prf[this_slice],
-                rb5_info->slice_iso8601_bgn[this_slice],
-                rb5_info->slice_iso8601_end[this_slice],
-                rb5_info->slice_dur_secs[this_slice]
-            );
+        //update dims from rb5_param_info, with verbose option
+            strcpy(req_rawdata_name,"dBZ"); //mandatory
+        if(strcmp(rb5_info->inp_file_data_type, "ALL") == 0){
+            strcpy(req_rawdata_name,"dBZ"); //mandatory
+        } else {
+            strcpy(req_rawdata_name,rb5_info->inp_file_data_type); //self
+        }
+        idx_req=find_in_string_arr(rb5_info->rawdata_name_arr,rb5_info->n_rawdatas,req_rawdata_name);
+        if(idx_req == -1) {
+            fprintf(stdout,"IMPOSSIBLE: %s not found\n", req_rawdata_name);
+        } else {
+            sprintf(xpath_bgn,"((/volume/scan/slice)[%2d]/slicedata/%s)[%2d]/",this_slice+1,"rawdata",idx_req+1);
+            rb5_param=get_rb5_param_info(rb5_info,xpath_bgn,L_RB5_PARAM_VERBOSE);
+            rb5_info->nrays[this_slice]=rb5_param.nrays;
+            rb5_info->nbins[this_slice]=rb5_param.nbins;
+            rb5_info->n_elems_data[this_slice]=rb5_param.n_elems_data;
         }
 
         //needed angle_deg_arr & slice_ray_angle_res_deg
@@ -853,6 +868,7 @@ strRB5_PARAM_INFO get_rb5_param_info(strRB5_INFO *rb5_info, char *xpath_bgn, int
     strRB5_PARAM_INFO rb5_param;
     strcpy(rb5_param.xpath_bgn,xpath_bgn);
     char xpath[MAX_STRING]="\0";
+    char stmpa[MAX_STRING]="\0";
 
     //get this_slice and update rb5_param.iray_0degN
     int this_slice;
@@ -876,18 +892,32 @@ strRB5_PARAM_INFO get_rb5_param_info(strRB5_INFO *rb5_info, char *xpath_bgn, int
              rb5_param.data_range_max  =atof(return_xpath_value(xpathCtx,strcat(strcpy(xpath,xpath_bgn),"@max"   )));
       rb5_param.data_bytesize=rb5_param.raw_binary_depth/8;
       if(L_VERBOSE){
-        fprintf(stdout,"%s%s = %s [%ld,%ld] (%ld-byte) range={%.4f,%.4f} (%s)\n",
-          xpath_bgn,
-          "@type",
+        sprintf(xpath_bgn,"(/volume/scan/slice)[%2d]",this_slice+1);
+        strncpy(stmpa,rb5_info->slice_dual_prf_mode[this_slice]+strlen("SdfDPrfMode"),3);
+        stmpa[3]='\0'; //add NULL terminator
+        fprintf(stdout,"%s @ %05.2f deg, %5.3f km_res, %4.2f deg_res, %3.1f µs pulse, %4ld samples, PRF(%3s)=%4.0f/%4.0f (%s to %s, %7.3f sec)",
+            xpath_bgn,
+            rb5_info->angle_deg_arr[this_slice],
+            rb5_info->slice_bin_range_res_km[this_slice],
+            rb5_info->slice_ray_angle_res_deg[this_slice],
+            rb5_info->slice_pw_microsec[this_slice],
+            rb5_info->slice_num_samples[this_slice],
+            stmpa,
+            rb5_info->slice_hi_prf[this_slice],
+            rb5_info->slice_lo_prf[this_slice],
+            rb5_info->slice_iso8601_bgn[this_slice],
+            rb5_info->slice_iso8601_end[this_slice],
+            rb5_info->slice_dur_secs[this_slice]
+        );
+        fprintf(stdout,", param = %s [%ld,%ld] (%ld-byte) range={%.4f,%.4f}\n",
           rb5_param.sparam,
           rb5_param.nrays,
           rb5_param.nbins,
           rb5_param.data_bytesize,
           rb5_param.data_range_min,
-          rb5_param.data_range_max,
-          rb5_param.iso8601
+          rb5_param.data_range_max
         );
-      } //if(L_VERBOSE) {
+      }
     } else {
       //  ./get_xpath_val 2016090715102400dBZ.vol "((/volume/scan/slice)[1]/slicedata/rayinfo)[6]/@refid"
       //  XPATH: ((/volume/scan/slice)[1]/slicedata/rayinfo)[6]/@refid = numpulses
@@ -900,7 +930,8 @@ strRB5_PARAM_INFO get_rb5_param_info(strRB5_INFO *rb5_info, char *xpath_bgn, int
              rb5_param.data_range_max=-999;
       rb5_param.data_bytesize=rb5_param.raw_binary_depth/8;
       if(L_VERBOSE){
-        fprintf(stdout,"%s%s = %s [%ld] (%ld-byte) (%s)\n",
+        // ((/volume/scan/slice)[ 1]/slicedata/rayinfo)[ 1]/@refid = startangle [360] (2-byte) (2018-03-06 07:48:03.324)
+        fprintf(stdout,"%s%s = %-16s [%ld] (%ld-byte) (%s)\n",
           xpath_bgn,
           "@refid",
           rb5_param.sparam,

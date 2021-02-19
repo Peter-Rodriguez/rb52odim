@@ -26,7 +26,7 @@
 
 .PHONY=install
 install:
-	@cp -v -f *.xml "${prefix}/config/"
+	@cp -v -f odim_radar_table.xml "${prefix}/config/"
 
 .PHONY:clean
 clean: ;

@@ -156,6 +156,7 @@ size_t get_blobid_buffer(strRB5_INFO *rb5_info, int req_blobid, unsigned char** 
 void convert_raw_to_data(strRB5_PARAM_INFO *rb5_param, void **input_raw_arr, float **return_data_arr);
 size_t return_param_blobid_raw(strRB5_INFO *rb5_info, strRB5_PARAM_INFO* rb5_param, void **return_raw_arr);
 char *map_rb5_to_h5_param(char *sparam);
+int is_rb5_param_dualpol(char *sparam);
 strURPDATA what_is_this_param_to_urp(char *sparam);
 void close_rb5_info(strRB5_INFO *rb5_info);
 char *get_xpath_slice_attrib(const xmlXPathContextPtr xpathCtx, size_t this_slice, char *xpath_end);

@@ -32,7 +32,10 @@ import _ravefield
 import _rb52odim, rb52odim
 import numpy as np
 
-_rave.setDebugLevel(_rave.Debug_RAVE_SPEWDEBUG)
+# see http://git.baltrad.eu/git/?p=rave.git;a=blob_plain;f=modules/rave.c
+#_rave.setDebugLevel(_rave.Debug_RAVE_SPEWDEBUG)
+#_rave.setDebugLevel(_rave.Debug_RAVE_DEBUG)
+_rave.setDebugLevel(_rave.Debug_RAVE_WARNING) #turns off rave_hlhdf_utilities INFO : Adding group: how
 
 ## Helper functions for ODIM validation below. For some reason, unit test
 #  objects can't pass tests to methods, but they can be passed to functions.
@@ -53,55 +56,68 @@ TOP_IGNORE=[
           ]
 
 # Not needed because RAVE either assigns these automagically, or they are just not relevant
-IGNORE = ['what/version', 'what/object', 
-          'how/_orig_file_format'] + TOP_IGNORE
+IGNORE = [
+    'what/version',
+    'what/object', 
+    'how/_orig_file_format',
+    'how/noisepowerh', #accept both raw (long) or processed (double)
+    'how/noisepowerv', #accept both raw (long) or processed (double)
+    ] + TOP_IGNORE
 
 def validateAttributes(utest, obj, ref_obj):
     for aname in ref_obj.getAttributeNames():
         if aname not in IGNORE:
-#            print 'aname : '+aname
-            attr = obj.getAttribute(aname)
             ref_attr = ref_obj.getAttribute(aname)
-#            print attr, ref_attr
+            attr = obj.getAttribute(aname)
             if isinstance(ref_attr, np.ndarray):  # Arrays get special treatment
                 utest.assertTrue(np.array_equal(attr, ref_attr))
-#                np.testing.assert_allclose(attr, ref_attr, rtol=1e-5, atol=0) #for no remake of ref files (numpy v1.16)
+#                try: #nicer failure reporting
+#                    np.testing.assert_allclose(attr, ref_attr, rtol=1e-5, atol=0) #for no remake of ref files (numpy v1.16)
+#                except:
+#                    print('AssertionError: aname : '+aname)
             else:
-                utest.assertEquals(attr, ref_attr)
+                try:
+                    utest.assertEqual(attr, ref_attr)
+                except AssertionError as e:
+                    print('AssertionError: aname : '+aname)
+                    print('ref_attr : ', ref_attr)
+                    print('    attr : ',     attr)
+#                    import pdb; pdb.set_trace()
+#                    utest.fail(str(e))
 
 
 def validateTopLevel(utest, obj, ref_obj):
-    utest.assertEquals(obj.source, ref_obj.source)
-    utest.assertEquals(obj.date , ref_obj.date)
-    utest.assertEquals(obj.time, ref_obj.time)
-    utest.assertAlmostEquals(obj.longitude, ref_obj.longitude, 12)
-    utest.assertAlmostEquals(obj.latitude, ref_obj.latitude, 12)
-    utest.assertAlmostEquals(obj.height, ref_obj.height, 12)
-    utest.assertAlmostEquals(obj.beamwidth, ref_obj.beamwidth, 12)
+    utest.assertEqual(obj.source, ref_obj.source)
+    utest.assertEqual(obj.date , ref_obj.date)
+    utest.assertEqual(obj.time, ref_obj.time)
+    utest.assertAlmostEqual(obj.longitude, ref_obj.longitude, 12)
+    utest.assertAlmostEqual(obj.latitude, ref_obj.latitude, 12)
+    utest.assertAlmostEqual(obj.height, ref_obj.height, 12)
+    utest.assertAlmostEqual(obj.beamwidth, ref_obj.beamwidth, 12)
     validateAttributes(utest, obj, ref_obj)
 
 
 def validateScan(utest, scan, ref_scan):
-    utest.assertEquals(scan.source, ref_scan.source)
-    utest.assertEquals(scan.date, ref_scan.date)
-    utest.assertEquals(scan.time, ref_scan.time)
-    utest.assertEquals(scan.startdate, ref_scan.startdate)
-    utest.assertEquals(scan.starttime, ref_scan.starttime)
-    utest.assertEquals(scan.enddate, ref_scan.enddate)
-    utest.assertEquals(scan.endtime, ref_scan.endtime)
-    utest.assertAlmostEquals(scan.longitude, ref_scan.longitude, 12)
-    utest.assertAlmostEquals(scan.latitude, ref_scan.latitude, 12)
-    utest.assertAlmostEquals(scan.height, ref_scan.height, 12)
-    utest.assertAlmostEquals(scan.beamwidth, ref_scan.beamwidth, 12)
-    utest.assertAlmostEquals(scan.elangle, ref_scan.elangle, 12)
-    utest.assertEquals(scan.nrays, ref_scan.nrays)
-    utest.assertEquals(scan.nbins, ref_scan.nbins)
-    utest.assertEquals(scan.a1gate, ref_scan.a1gate)
-    utest.assertEquals(scan.rscale, ref_scan.rscale)
-    utest.assertEquals(scan.rstart, ref_scan.rstart)
+    utest.assertEqual(scan.source, ref_scan.source)
+    utest.assertEqual(scan.date, ref_scan.date)
+    utest.assertEqual(scan.time, ref_scan.time)
+    utest.assertEqual(scan.startdate, ref_scan.startdate)
+    utest.assertEqual(scan.starttime, ref_scan.starttime)
+    utest.assertEqual(scan.enddate, ref_scan.enddate)
+    utest.assertEqual(scan.endtime, ref_scan.endtime)
+    utest.assertAlmostEqual(scan.longitude, ref_scan.longitude, 12)
+    utest.assertAlmostEqual(scan.latitude, ref_scan.latitude, 12)
+    utest.assertAlmostEqual(scan.height, ref_scan.height, 12)
+    utest.assertAlmostEqual(scan.beamwidth, ref_scan.beamwidth, 12)
+    utest.assertAlmostEqual(scan.elangle, ref_scan.elangle, 12)
+    utest.assertEqual(scan.nrays, ref_scan.nrays)
+    utest.assertEqual(scan.nbins, ref_scan.nbins)
+    utest.assertEqual(scan.a1gate, ref_scan.a1gate)
+    utest.assertEqual(scan.rscale, ref_scan.rscale)
+    utest.assertEqual(scan.rstart, ref_scan.rstart)
     for pname in ref_scan.getParameterNames():
 #        print 'pname : '+pname
-        utest.assertEquals(scan.hasParameter(pname), 
+        utest.assertEqual(scan.hasParameter(pname), 
                            ref_scan.hasParameter(pname))
         param = scan.getParameter(pname)
         ref_param = ref_scan.getParameter(pname)
@@ -125,40 +141,40 @@ def validateMergedPvol(self, new_pvol, iSCAN, ref_RB5_TARBALL):
 
 
 class rb52odimTest(unittest.TestCase):
-    BAD_RB5_VOL  = "../2008053002550300dBZ.vol"
-    GOOD_RB5_VOL = "../2016092614304000dBZ.vol"
-    GOOD_RB5_AZI = "../2016081612320300dBZ.azi"
-    NEW_H5_VOL = "../2016092614304000dBZ.vol.new.h5"
-    NEW_H5_AZI = "../2016081612320300dBZ.azi.new.h5"
-    REF_H5_VOL = "../2016092614304000dBZ.vol.h5"  # Assumes that these reference files are ODIM compliant
-    REF_H5_AZI = "../2016081612320300dBZ.azi.h5"  
+    BAD_RB5_VOL  = "../org/2008053002550300dBZ.vol" #volume version="5.22.6"
+    GOOD_RB5_VOL = "../org/2016092614304000dBZ.vol" #volume version="5.43.11"
+    GOOD_RB5_AZI = "../org/2016081612320300dBZ.azi" #volume version="5.43.11"
+    NEW_H5_VOL = "../new/2016092614304000dBZ.vol.new.h5"
+    NEW_H5_AZI = "../new/2016081612320300dBZ.azi.new.h5"
+    REF_H5_VOL = "../ref/2016092614304000dBZ.vol.ref.h5"  # Assumes that these reference files are ODIM compliant
+    REF_H5_AZI = "../ref/2016081612320300dBZ.azi.ref.h5"  
     FILELIST_RB5 = [\
-        "../Dopvol1_A.azi/2015120916500500dBuZ.azi",\
-        "../Dopvol1_A.azi/2015120916500500dBZ.azi",\
-        "../Dopvol1_A.azi/2015120916500500PhiDP.azi",\
-        "../Dopvol1_A.azi/2015120916500500RhoHV.azi",\
-        "../Dopvol1_A.azi/2015120916500500SQI.azi",\
-        "../Dopvol1_A.azi/2015120916500500uPhiDP.azi",\
-        "../Dopvol1_A.azi/2015120916500500V.azi",\
-        "../Dopvol1_A.azi/2015120916500500W.azi",\
-        "../Dopvol1_A.azi/2015120916500500ZDR.azi"\
-        ]
-    NEW_H5_FILELIST = "../Dopvol1_A.azi/caxah_dopvol1a_20151209T1650Z.new.h5"
-    REF_H5_FILELIST = "../Dopvol1_A.azi/caxah_dopvol1a_20151209T1650Z.h5"
-    RB5_TARBALL_DOPVOL1A = "../caxah_dopvol1a_20151209T1650Z.azi.tar.gz"
-    RB5_TARBALL_DOPVOL1B = "../caxah_dopvol1b_20151209T1650Z.azi.tar.gz"
-    RB5_TARBALL_DOPVOL1C = "../caxah_dopvol1c_20151209T1650Z.azi.tar.gz"
-    NEW_H5_TARBALL_DOPVOL1A = "../caxah_dopvol1a_20151209T1650Z.azi.new.h5"
-    NEW_H5_TARBALL_DOPVOL1B = "../caxah_dopvol1b_20151209T1650Z.azi.new.h5"
-    NEW_H5_TARBALL_DOPVOL1C = "../caxah_dopvol1c_20151209T1650Z.azi.new.h5"
-    REF_H5_TARBALL_DOPVOL1B = "../caxah_dopvol1b_20151209T1650Z.azi.h5"
-    REF_H5_MERGED_PVOL = "../caxah_dopvol_20151209T1650Z.ref.h5"
-    NEW_H5_MERGED_PVOL = "../caxah_dopvol_20151209T1650Z.vol.new.h5"
-    CASRA_AZI_dBZ = "../CASRA_2017121520051400dBZ.azi.gz"
-    CASRA_AZI = "../CASRA*azi.gz"
-    CASRA_VOL = "../CASRA*vol.gz"
-    CASRA_H5_SCAN = "../CASRA_20171215200514_scan.h5"
-    CASRA_H5_PVOL = "../CASRA_20171215200003_pvol.h5"
+        "../org/Dopvol1_A.azi/2015120916500500dBuZ.azi",\
+        "../org/Dopvol1_A.azi/2015120916500500dBZ.azi",\
+        "../org/Dopvol1_A.azi/2015120916500500PhiDP.azi",\
+        "../org/Dopvol1_A.azi/2015120916500500RhoHV.azi",\
+        "../org/Dopvol1_A.azi/2015120916500500SQI.azi",\
+        "../org/Dopvol1_A.azi/2015120916500500uPhiDP.azi",\
+        "../org/Dopvol1_A.azi/2015120916500500V.azi",\
+        "../org/Dopvol1_A.azi/2015120916500500W.azi",\
+        "../org/Dopvol1_A.azi/2015120916500500ZDR.azi"\
+        ] #volume version="5.43.10"
+    NEW_H5_FILELIST = "../new/caxah_dopvol1a_20151209T1650Z.by_filelist.new.h5"
+    REF_H5_FILELIST = "../ref/caxah_dopvol1a_20151209T1650Z.by_filelist.ref.h5"
+    RB5_TARBALL_DOPVOL1A = "../org/caxah_dopvol1a_20151209T1650Z.azi.tar.gz"
+    RB5_TARBALL_DOPVOL1B = "../org/caxah_dopvol1b_20151209T1650Z.azi.tar.gz"
+    RB5_TARBALL_DOPVOL1C = "../org/caxah_dopvol1c_20151209T1650Z.azi.tar.gz"
+    NEW_H5_TARBALL_DOPVOL1A = "../new/caxah_dopvol1a_20151209T1650Z.azi.new.h5"
+    NEW_H5_TARBALL_DOPVOL1B = "../new/caxah_dopvol1b_20151209T1650Z.azi.new.h5"
+    NEW_H5_TARBALL_DOPVOL1C = "../new/caxah_dopvol1c_20151209T1650Z.azi.new.h5"
+    REF_H5_TARBALL_DOPVOL1B = "../ref/caxah_dopvol1b_20151209T1650Z.azi.ref.h5"
+    NEW_H5_MERGED_PVOL = "../new/caxah_dopvol_20151209T1650Z.vol.new.h5"
+    REF_H5_MERGED_PVOL = "../ref/caxah_dopvol_20151209T1650Z.vol.ref.h5"
+    CASRA_AZI_dBZ = "../org/CASRA_2017121520051400dBZ.azi.gz" #volume version="5.51.3"
+    CASRA_AZI = "../org/CASRA*azi.gz"
+    CASRA_VOL = "../org/CASRA*vol.gz"
+    REF_CASRA_H5_SCAN = "../ref/CASRA_20171215200514_scan.ref.h5"
+    REF_CASRA_H5_PVOL = "../ref/CASRA_20171215200003_pvol.ref.h5"
 
     def setUp(self):
         pass
@@ -167,7 +183,7 @@ class rb52odimTest(unittest.TestCase):
         pass
 
     def testWrongInput(self):
-        status = _rb52odim.isRainbow5(self.CASRA_AZI_dBZ)
+        status = _rb52odim.isRainbow5(self.REF_H5_AZI)
         self.assertFalse(status)
 
     def testIsBadRB5Input(self):
@@ -176,6 +192,11 @@ class rb52odimTest(unittest.TestCase):
 
     def testIsGoodRB5Input(self):
         status = _rb52odim.isRainbow5(self.GOOD_RB5_VOL)
+        self.assertTrue(status)
+
+    #2020-Jan-14: isRainbow5() now handles .gz files
+    def testIsGoodRB5gzInput(self):
+        status = _rb52odim.isRainbow5(self.CASRA_AZI_dBZ)
         self.assertTrue(status)
 
     def testReadRB5Azi(self):
@@ -191,7 +212,7 @@ class rb52odimTest(unittest.TestCase):
         self.assertTrue(rio.objectType is _rave.Rave_ObjectType_PVOL)
         pvol = rio.object
         ref_pvol = _raveio.open(self.REF_H5_VOL).object
-        self.assertEquals(pvol.getNumberOfScans(), ref_pvol.getNumberOfScans())
+        self.assertEqual(pvol.getNumberOfScans(), ref_pvol.getNumberOfScans())
         validateTopLevel(self, pvol, ref_pvol)
         for i in range(pvol.getNumberOfScans()):
             scan = pvol.getScan(i)
@@ -214,7 +235,7 @@ class rb52odimTest(unittest.TestCase):
         ref_rio = _raveio.open(self.REF_H5_VOL)
         self.assertTrue(new_rio.objectType is _rave.Rave_ObjectType_PVOL)
         new_pvol, ref_pvol = new_rio.object, ref_rio.object
-        self.assertEquals(new_pvol.getNumberOfScans(), ref_pvol.getNumberOfScans())
+        self.assertEqual(new_pvol.getNumberOfScans(), ref_pvol.getNumberOfScans())
         validateTopLevel(self, new_pvol, ref_pvol)
         for i in range(new_pvol.getNumberOfScans()):
             new_scan = new_pvol.getScan(i)
@@ -272,7 +293,7 @@ class rb52odimTest(unittest.TestCase):
         new_rio = _raveio.open(self.NEW_H5_MERGED_PVOL)
         self.assertTrue(new_rio.objectType is _rave.Rave_ObjectType_PVOL)
         new_pvol = new_rio.object
-        self.assertEquals(new_pvol.getNumberOfScans(), 3)
+        self.assertEqual(new_pvol.getNumberOfScans(), 3)
         validateMergedPvol(self, new_pvol, 0, self.RB5_TARBALL_DOPVOL1A)
         validateMergedPvol(self, new_pvol, 1, self.RB5_TARBALL_DOPVOL1B)
         validateMergedPvol(self, new_pvol, 2, self.RB5_TARBALL_DOPVOL1C)
@@ -298,7 +319,7 @@ class rb52odimTest(unittest.TestCase):
         new_pvol, ref_pvol = new_rio.object, ref_rio.object
 
         self.assertTrue(new_rio.objectType is _rave.Rave_ObjectType_PVOL)
-        self.assertEquals(new_pvol.getNumberOfScans(), 
+        self.assertEqual(new_pvol.getNumberOfScans(), 
                           ref_pvol.getNumberOfScans())
         validateTopLevel(self, new_pvol, ref_pvol)
         for i in range(new_pvol.getNumberOfScans()):
@@ -323,7 +344,7 @@ class rb52odimTest(unittest.TestCase):
     # Somewhat construed way of testing readParameterFiles()
     def testReadParameters(self):
         scan = rb52odim.readParameterFiles([self.CASRA_AZI_dBZ])[0]
-        ref = _raveio.open(self.CASRA_H5_SCAN).object
+        ref = _raveio.open(self.REF_CASRA_H5_SCAN).object
         for pname in ref.getParameterNames():
             if pname != 'DBZH':
                 ref.removeParameter(pname)
@@ -332,13 +353,13 @@ class rb52odimTest(unittest.TestCase):
     def testCompileScanParameters(self):
         scans = rb52odim.readParameterFiles(glob.glob(self.CASRA_AZI))
         oscan = rb52odim.compileScanParameters(scans)
-        ref = _raveio.open(self.CASRA_H5_SCAN).object
+        ref = _raveio.open(self.REF_CASRA_H5_SCAN).object
         validateScan(self, oscan, ref)
 
     def testCompileVolumeFromVolumes(self):
         volumes = rb52odim.readParameterFiles(glob.glob(self.CASRA_VOL))
         ovolume = rb52odim.compileVolumeFromVolumes(volumes)
-        ref = _raveio.open(self.CASRA_H5_PVOL).object
+        ref = _raveio.open(self.REF_CASRA_H5_PVOL).object
         validateTopLevel(self, ovolume, ref)
         for i in range(ovolume.getNumberOfScans()):
             oscan = ovolume.getScan(i)
@@ -349,4 +370,19 @@ class rb52odimTest(unittest.TestCase):
     def testReadRB5(self):
         rio = rb52odim.readRB5([self.CASRA_AZI_dBZ])
         self.assertTrue(rio.objectType, _rave.Rave_ObjectType_SCAN)
+
+    def testCompileVolumeFromVolumes_vs_CombineRB5FilesReturnRIO(self):
+        files = glob.glob(self.CASRA_VOL) #unsorted
+        ifiles = sorted(files, key=lambda s: s.lower())  # case-insensitive sort
+        #Note: compiled/combined scan's Attribute('how/peakpwr') is set by first param encountered!
+        #need files sorted as rb52odim.readParameterFiles() contains file sorting!
+        volumes = rb52odim.readParameterFiles(ifiles)
+        compile_pvol = rb52odim.compileVolumeFromVolumes(volumes, adjustTime=False)
+        combine_rio = rb52odim.combineRB5(ifiles, return_rio=True) #no adjustTime() functionality
+        combine_pvol = combine_rio.object
+        validateTopLevel(self, compile_pvol, combine_pvol)
+        for i in range(compile_pvol.getNumberOfScans()):
+            compile_scan = compile_pvol.getScan(i)
+            combine_scan = combine_pvol.getScan(i)
+            validateScan(self, compile_scan, combine_scan)
 
