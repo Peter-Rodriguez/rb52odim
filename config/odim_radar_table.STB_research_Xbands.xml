@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<table ver="1.0" author="Peter Rodriguez" updated="2020-09-17">
+    <radar id="CAXWH" bgn_date="2017-12-13" end_date="present">
+        <label>CAX3 at Whitehorse (STB)</label>
+        <operator>OBRS</operator>
+        <band>X</band>
+        <odim_node>caxwh</odim_node>
+        <locale>Whitehorse</locale>
+        <admin_state>YT</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment></comment>
+    </radar>
+    <radar id="YXY" bgn_date="2016-12-17" end_date="2017-08-30">
+        <label>CAX1 at Whitehorse (STB)</label>
+        <operator>OBRS</operator>
+        <band>X</band>
+        <odim_node>caxwh</odim_node>
+        <locale>Whitehorse</locale>
+        <admin_state>YT</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Moved from Albert Head, BC. Returned to King Radar</comment>
+    </radar>
+    <radar id="XBV" bgn_date="2017-08-10" end_date="2018-04-01">
+        <label>CAX2 at Blainville (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxbv</odim_node>
+        <locale>Blainville</locale>
+        <admin_state>QC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Moved from Exeter, ON</comment>
+    </radar>
+    <radar id="XSO" bgn_date="2016-08-15" end_date="2017-05-21">
+        <label>CAX2 at Exeter (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxso</odim_node>
+        <locale>Exeter</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment></comment>
+    </radar>
+    <radar id="XAH" bgn_date="2015-11-13" end_date="2016-05-09">
+        <label>CAX1 at Olympex (STB)</label>
+        <operator>OBRS</operator>
+        <band>X</band>
+        <odim_node>caxah</odim_node>
+        <locale>Albert Head</locale>
+        <admin_state>BC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Originally XKR, changed to XAH in Keepers by PR</comment>
+    </radar>
+    <radar id="XKR" bgn_date="2015-10-16" end_date="2015-10-21">
+        <label>CAX1 at King Radar (STB)</label>
+        <operator>OBRS</operator>
+        <band>X</band>
+        <odim_node>caxkr</odim_node>
+        <locale>King City</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment></comment>
+    </radar>
+</table>
+<!-- END XML -->
+<!---
+
+We can add comments and to-do lists here...
+
+URP's Site.conf,
+- overrides any raw file unreliable values of (lon,lat,alt). Add those tags?
+- ground and horn heights 
+
+-->

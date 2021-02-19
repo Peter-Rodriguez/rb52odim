@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table ver="1.0" author="Peter Rodriguez" updated="2020-12-08">
+<!-- Converted : odim_source.rave_ec.2020-09.xml -->
+    <radar id="CASRA" bgn_date="" end_date="">
+        <label>S-band at Radisson, SK (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casra</odim_node>
+        <locale>Radisson</locale>
+        <admin_state>SK</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASBV" bgn_date="" end_date="">
+        <label>S-band at Blainville, QC (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casbv</odim_node>
+        <locale>Blainville</locale>
+        <admin_state>QC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASFW" bgn_date="" end_date="">
+        <label>S-band at Foxwarren, MB (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casfw</odim_node>
+        <locale>Foxwarren</locale>
+        <admin_state>MB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASRF" bgn_date="" end_date="">
+        <label>S-band at Smooth Rock Falls, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casrf</odim_node>
+        <locale>Smooth Rock Falls</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASSR" bgn_date="" end_date="">
+        <label>S-band at Spirit River, AB (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>cassr</odim_node>
+        <locale>Spirit River</locale>
+        <admin_state>AB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASET" bgn_date="" end_date="">
+        <label>S-band at Exeter, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>caset</odim_node>
+        <locale>Exeter</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASBE" bgn_date="" end_date="">
+        <label>S-band at Bethune, SK (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casbe</odim_node>
+        <locale>Bethune</locale>
+        <admin_state>SK</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASMB" bgn_date="" end_date="">
+        <label>S-band at Marion Bridge, NS (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casmb</odim_node>
+        <locale>Marion Bridge</locale>
+        <admin_state>NS</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASCM" bgn_date="" end_date="">
+        <label>S-band at Chipman, NB (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>cascm</odim_node>
+        <locale>Chipman</locale>
+        <admin_state>NB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASLA" bgn_date="" end_date="">
+        <label>S-band at Landrienne, QC (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casla</odim_node>
+        <locale>Landrienne</locale>
+        <admin_state>QC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASMR" bgn_date="" end_date="">
+        <label>S-band at Montreal River Harbour, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casmr</odim_node>
+        <locale>Montreal River Harbour</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASSM" bgn_date="" end_date="">
+        <label>S-band at Strathmore, AB (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>cassm</odim_node>
+        <locale>Strathmore</locale>
+        <admin_state>AB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASSU" bgn_date="" end_date="">
+        <label>S-band at Schuler, AB (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>cassu</odim_node>
+        <locale>Schuler</locale>
+        <admin_state>AB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASDR" bgn_date="" end_date="">
+        <label>S-band at Dryden, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casdr</odim_node>
+        <locale>Dryden</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASHR" bgn_date="" end_date="">
+        <label>S-band at Holyrood, NL (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>cashr</odim_node>
+        <locale>Holyrood</locale>
+        <admin_state>NL</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASWL" bgn_date="" end_date="">
+        <label>S-band at Woodlands, MB (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>caswl</odim_node>
+        <locale>Woodlands</locale>
+        <admin_state>MB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASVD" bgn_date="" end_date="">
+        <label>S-band at Valdirene, QC (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casvd</odim_node>
+        <locale>Valdirene</locale>
+        <admin_state>QC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASSF" bgn_date="" end_date="">
+        <label>S-band at Ste Francoise, QC (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>cassf</odim_node>
+        <locale>Ste Francoise</locale>
+        <admin_state>QC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASTR" bgn_date="" end_date="">
+        <label>S-band at Egbert, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>castr</odim_node>
+        <locale>Egbert</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASGO" bgn_date="" end_date="">
+        <label>S-band at Gore, NS (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casgo</odim_node>
+        <locale>Gore</locale>
+        <admin_state>NS</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASMA" bgn_date="" end_date="">
+        <label>S-band at Mt Apica, QC (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casma</odim_node>
+        <locale>Mt Apica</locale>
+        <admin_state>QC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASFT" bgn_date="" end_date="">
+        <label>S-band at Franktown, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casft</odim_node>
+        <locale>Franktown</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASKR" bgn_date="" end_date="">
+        <label>S-band at King City, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>caskr</odim_node>
+        <locale>King City</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASCV" bgn_date="" end_date="">
+        <label>S-band at Carvel, AB (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>cascv</odim_node>
+        <locale>Carvel</locale>
+        <admin_state>AB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASSS" bgn_date="" end_date="">
+        <label>S-band at Silver Star, BC (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casss</odim_node>
+        <locale>Silver Star</locale>
+        <admin_state>BC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASAG" bgn_date="" end_date="">
+        <label>S-band at Aldergrove, BC (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casag</odim_node>
+        <locale>Aldergrove</locale>
+        <admin_state>BC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASMM" bgn_date="" end_date="">
+        <label>S-band at Marble Mountain, NL (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casmm</odim_node>
+        <locale>Marble Mountain</locale>
+        <admin_state>NL</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASSN" bgn_date="" end_date="">
+        <label>S-band at Shuniah, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>cassn</odim_node>
+        <locale>Shuniah</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASBI" bgn_date="" end_date="">
+        <label>S-band at Britt, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casbi</odim_node>
+        <locale>Britt</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASFM" bgn_date="" end_date="">
+        <label>S-band at Fort McMurray, AB (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casfm</odim_node>
+        <locale>Fort McMurray</locale>
+        <admin_state>AB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASCL" bgn_date="" end_date="">
+        <label>S-band at Cold Lake, AB (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>cascl</odim_node>
+        <locale>Cold Lake</locale>
+        <admin_state>AB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASPG" bgn_date="" end_date="">
+        <label>S-band at Prince George, BC (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>caspg</odim_node>
+        <locale>Prince George</locale>
+        <admin_state>BC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CASVI" bgn_date="" end_date="">
+        <label>S-band at Vancouver Island, BC (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casvi</odim_node>
+        <locale>Vancouver Island</locale>
+        <admin_state>BC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXAM" bgn_date="" end_date="">
+        <label>X-band at Valdirene, QC (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxam</odim_node>
+        <locale>Valdirene</locale>
+        <admin_state>QC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXBE" bgn_date="" end_date="">
+        <label>X-band at Bethune, SK (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxbe</odim_node>
+        <locale>Bethune</locale>
+        <admin_state>SK</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXBU" bgn_date="" end_date="">
+        <label>X-band at Schuler, AB (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxbu</odim_node>
+        <locale>Schuler</locale>
+        <admin_state>AB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXDR" bgn_date="" end_date="">
+        <label>X-band at Dryden, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxdr</odim_node>
+        <locale>Dryden</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXFT" bgn_date="" end_date="">
+        <label>X-band at Franktown, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxft</odim_node>
+        <locale>Franktown</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXFW" bgn_date="" end_date="">
+        <label>X-band at Foxwarren, MB (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxfw</odim_node>
+        <locale>Foxwarren</locale>
+        <admin_state>MB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXGO" bgn_date="" end_date="">
+        <label>X-band at Halifax, NS (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxgo</odim_node>
+        <locale>Halifax</locale>
+        <admin_state>NS</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXLA" bgn_date="" end_date="">
+        <label>X-band at Landrienne, QC (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxla</odim_node>
+        <locale>Landrienne</locale>
+        <admin_state>QC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXMB" bgn_date="" end_date="">
+        <label>X-band at Marion Bridge, NS (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxmb</odim_node>
+        <locale>Marion Bridge</locale>
+        <admin_state>NS</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXME" bgn_date="" end_date="">
+        <label>X-band at Marble Mountain, NL (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxme</odim_node>
+        <locale>Marble Mountain</locale>
+        <admin_state>NL</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXNC" bgn_date="" end_date="">
+        <label>X-band at Chipman, NB (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxnc</odim_node>
+        <locale>Chipman</locale>
+        <admin_state>NB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXNI" bgn_date="" end_date="">
+        <label>X-band at Lasseter, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxni</odim_node>
+        <locale>Lasseter</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXPG" bgn_date="" end_date="">
+        <label>X-band at Prince George, BC (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxpg</odim_node>
+        <locale>Prince George</locale>
+        <admin_state>BC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXRA" bgn_date="" end_date="">
+        <label>X-band at Radisson, SK (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxra</odim_node>
+        <locale>Radisson</locale>
+        <admin_state>SK</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXSI" bgn_date="" end_date="">
+        <label>X-band at Mt Sicker, BC (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxsi</odim_node>
+        <locale>Mt Sicker</locale>
+        <admin_state>BC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXSM" bgn_date="" end_date="">
+        <label>X-band at Strathmore, AB (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxsm</odim_node>
+        <locale>Strathmore</locale>
+        <admin_state>AB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXSS" bgn_date="" end_date="">
+        <label>X-band at Silver Star, BC (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxss</odim_node>
+        <locale>Silver Star</locale>
+        <admin_state>BC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXTI" bgn_date="" end_date="">
+        <label>X-band at Timmins, ON (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxti</odim_node>
+        <locale>Timmins</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+    <radar id="CAXWL" bgn_date="" end_date="">
+        <label>X-band at Woodlands, MB (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxwl</odim_node>
+        <locale>Woodlands</locale>
+        <admin_state>MB</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo/Rainbow5</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magnetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Entry from : odim_source.rave_ec.2020-09.xml</comment>
+    </radar>
+<!-- Merged : odim_radar_table.STB_research_Xbands.xml -->
+    <radar id="CAXWH" bgn_date="2017-12-13" end_date="present">
+        <label>CAX3 at Whitehorse (STB)</label>
+        <operator>OBRS</operator>
+        <band>X</band>
+        <odim_node>caxwh</odim_node>
+        <locale>Whitehorse</locale>
+        <admin_state>YT</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment></comment>
+    </radar>
+    <radar id="YXY" bgn_date="2016-12-17" end_date="2017-08-30">
+        <label>CAX1 at Whitehorse (STB)</label>
+        <operator>OBRS</operator>
+        <band>X</band>
+        <odim_node>caxwh</odim_node>
+        <locale>Whitehorse</locale>
+        <admin_state>YT</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Moved from Albert Head, BC. Returned to King Radar</comment>
+    </radar>
+    <radar id="XBV" bgn_date="2017-08-10" end_date="2018-04-01">
+        <label>CAX2 at Blainville (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxbv</odim_node>
+        <locale>Blainville</locale>
+        <admin_state>QC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Moved from Exeter, ON</comment>
+    </radar>
+    <radar id="XSO" bgn_date="2016-08-15" end_date="2017-05-21">
+        <label>CAX2 at Exeter (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxso</odim_node>
+        <locale>Exeter</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment></comment>
+    </radar>
+    <radar id="XAH" bgn_date="2015-11-13" end_date="2016-05-09">
+        <label>CAX1 at Olympex (STB)</label>
+        <operator>OBRS</operator>
+        <band>X</band>
+        <odim_node>caxah</odim_node>
+        <locale>Albert Head</locale>
+        <admin_state>BC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Originally XKR, changed to XAH in Keepers by PR</comment>
+    </radar>
+    <radar id="XKR" bgn_date="2015-10-16" end_date="2015-10-21">
+        <label>CAX1 at King Radar (STB)</label>
+        <operator>OBRS</operator>
+        <band>X</band>
+        <odim_node>caxkr</odim_node>
+        <locale>King City</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment></comment>
+    </radar>
+</table>
+<!-- END XML -->

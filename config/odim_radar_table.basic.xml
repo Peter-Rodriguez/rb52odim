@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<table ver="1.0" author="Peter Rodriguez" updated="2020-10-01">
+<!-- <radar id= must match Rainbow5 file's /volume/radarinfo/@id -->
+<!-- <odim_node> permits cross-reference into $RAVEROOT/rave/config/odim_source.xml -->
+<!-- Generic stub entries: change to suit -->
+    <radar id="ccSll" bgn_date="n/a" end_date="n/a">
+        <label>S-band at ...</label>
+        <operator></operator>
+        <band>S</band>
+        <odim_node>ccsll</odim_node>
+        <locale>Locale</locale>
+        <admin_state>State</admin_state>
+        <country>Country</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo</make>
+        <model>1700S</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Dummy S-band entry</comment>
+    </radar>
+    <radar id="ccXll" bgn_date="n/a" end_date="n/a">
+        <label>Poratble X-band at ...</label>
+        <operator></operator>
+        <band>X</band>
+        <odim_node>ccxll</odim_node>
+        <locale>Locale</locale>
+        <admin_state>State</admin_state>
+        <country>Country</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Dummy X-band entry</comment>
+    </radar>
+    <radar id="GEMA" bgn_date="n/a" end_date="n/a">
+        <label>Gematronik</label>
+        <operator></operator>
+        <band>C</band>
+        <odim_node>gema</odim_node>
+        <locale>Neuss</locale>
+        <admin_state>ON</admin_state>
+        <country>Germany</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>Leonardo</make>
+        <model>1600C</model>
+        <serial></serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Dummy C-band entry</comment>
+    </radar>
+<!-- Entries for rb52odim unittest data -->
+    <radar id="CASRA" bgn_date="2017-12-04" end_date="present">
+        <label>S-band at Radisson (NRP)</label>
+        <operator>NRP</operator>
+        <band>S</band>
+        <odim_node>casra</odim_node>
+        <locale>Radisson</locale>
+        <admin_state>SK</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>1700S</model>
+        <serial>218cas1</serial>
+        <txtype>klystron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>1st CWRRP location</comment>
+    </radar>
+    <radar id="XSO" bgn_date="2016-08-15" end_date="2017-05-21">
+        <label>CAX2 at Exeter (NRP)</label>
+        <operator>NRP</operator>
+        <band>X</band>
+        <odim_node>caxso</odim_node>
+        <locale>Exeter</locale>
+        <admin_state>ON</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Test deployment</comment>
+    </radar>
+    <radar id="XAH" bgn_date="2015-11-13" end_date="2016-05-09">
+        <label>CAX1 at Olympex (STB)</label>
+        <operator>OBRS</operator>
+        <band>X</band>
+        <odim_node>caxah</odim_node>
+        <locale>Albert Head</locale>
+        <admin_state>BC</admin_state>
+        <country>Canada</country>
+        <wmo_id></wmo_id>
+        <rf_call_sign></rf_call_sign>
+        <make>SELEX</make>
+        <model>60DX</model>
+        <serial></serial>
+        <txtype>magetron</txtype>
+        <poltype>simultaneous-dual</poltype>
+        <comment>Olympex field campaign 2015-16</comment>
+    </radar>
+</table>
+<!-- END XML -->
+<!---
+
+We can add comments and to-do lists here...
+
+-->

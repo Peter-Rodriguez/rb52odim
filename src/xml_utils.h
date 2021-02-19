@@ -1,10 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include <libxml/tree.h> //add -I/usr/include/libxml2 -lxml2 to compile
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
 #include <libxml/xpathInternals.h>
+
+#include <zlib.h> //for gzopen(), gzread(), gzclose()
+#include <errno.h>
 
 #define MAX_STRING 256
 

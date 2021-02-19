@@ -23,7 +23,7 @@ Test suite for rave_ec
 @author Daniel Michelson, Environment and Climate Change Cananda
 @date 2016-06-10
 '''
-import unittest, os
+import unittest, os, sys
 import _rave
 import _rb52odim
 
@@ -35,15 +35,26 @@ if __name__ == '__main__':
 
   # do only this one test
   suite = unittest.TestSuite()
+#  suite.addTest(rb52odimTest("testWrongInput"))
+#  suite.addTest(rb52odimTest("testSingleRB5Azi"))
 #  suite.addTest(rb52odimTest("testSingleRB5Vol"))
+#  suite.addTest(rb52odimTest("testReadParameters"))
 #  suite.addTest(rb52odimTest("testCombineRB5Files"))
 #  suite.addTest(rb52odimTest("testCombineRB5FromTarball"))
 #  suite.addTest(rb52odimTest("testCompileScanParameters"))
 #  suite.addTest(rb52odimTest("testCompileVolumeFromVolumes"))
+#  suite.addTest(rb52odimTest("testMergeOdimScans2Pvol"))
+#  suite.addTest(rb52odimTest("testCompileVolumeFromVolumes_vs_CombineRB5FilesReturnRIO"))
 
   # do all
   suite = unittest.TestLoader().loadTestsFromTestCase(rb52odimTest)
 
   #verbosity control added >=2.7 (crispus has 2.6.6!)
   #".", "E" or "F" for "ok", "error" and "fail" written by self.AssertXXX method if verbose>=1
-  unittest.TextTestRunner(verbosity=3).run(suite)
+  result = unittest.TextTestRunner(verbosity=3).run(suite)
+  #print('result : %s' % result)
+
+  #return an exit code
+  exit_code=int(not result.wasSuccessful())
+  #print('Exit code : %d' % exit_code)
+  sys.exit(exit_code)

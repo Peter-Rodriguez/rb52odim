@@ -72,7 +72,7 @@ char *return_xpath_name(const xmlXPathContextPtr xpathCtx, char *xpath){
         return("\0");
     }
     char *value = (char *) cur->name;
-//    fprintf(stdout,"XPATH: %s = %s\n", xpathExpr, value);
+//    fprintf(stdout,"debug XPATH: %s = %s\n", xpathExpr, value);
 
     /* Cleanup */
     xmlXPathFreeObject(xpathObj);
@@ -111,9 +111,10 @@ char *return_xpath_value(const xmlXPathContextPtr xpathCtx, char *xpath){
         xmlXPathFreeObject(xpathObj);
         return("\0");
     }
-    char *value = (char *) cur->children->content;
-//    fprintf(stdout,"XPATH: %s = %s\n", xpathExpr, value);
-
+//2020-Nov: xmlNodeGetContent function has checks for null pointers at cur, children, and content
+    char *value = (char *)xmlNodeGetContent(cur->children);
+//    char *value = (char *) cur->children->content;
+//    fprintf(stdout,"debug XPATH: %s = %s\n", xpathExpr, value);
     /* Cleanup */
     xmlXPathFreeObject(xpathObj);
 
@@ -122,44 +123,66 @@ char *return_xpath_value(const xmlXPathContextPtr xpathCtx, char *xpath){
 
 //#############################################################################
 
+//2018-May-25: Added gzopen() & gzread() handling
 size_t read_file_2_buffer(char *inp_fname, char **return_buffer){
 
     size_t EXIT_NULL_VAL=0;
+
     char *buffer=NULL;
     size_t buffer_len=0;
 
-    FILE *fp = NULL;
-    fp = fopen(inp_fname, "r");
-    if (NULL == fp) {
-        fprintf(stderr,"Error while opening file = %s\n", inp_fname);
+    //based on https://www.lemoda.net/c/gzfile-read/
+    size_t chunk_len = 0x1000; // Size of the block of memory to use for chunk reading
+
+    gzFile fp = NULL;
+    fp = gzopen(inp_fname, "r");
+    if (! fp) {
+        fprintf (stderr, "gzopen of '%s' failed: %s.\n", inp_fname, strerror (errno));
         return(EXIT_NULL_VAL);
     }
 
-    if (fseek(fp,0L,SEEK_END) == 0) {
-        /* Get the size of the file. */
-        buffer_len=ftell(fp);
-        if (buffer_len == -1) {
-            fprintf(stderr,"Error while reading file\n");
-            return(EXIT_NULL_VAL);
+    while (1) {
+        int err;
+        int bytes_read;
+        unsigned char chunk[chunk_len];
+        bytes_read = gzread (fp, chunk, chunk_len - 1);
+//        chunk[bytes_read] = '\0';
+//        printf ("%s", chunk);
+        buffer_len += bytes_read;
+        if (bytes_read < chunk_len - 1) {
+            if (gzeof (fp)) {
+                break;
+            }
+            else {
+                const char * error_string;
+                error_string = gzerror (fp, & err);
+                if (err) {
+                    fprintf (stderr, "Error: %s.\n", error_string);
+                    return(EXIT_NULL_VAL);
+                }
+            }
         }
+    }
 
-        /* Allocate our buffer to that size. */
-        buffer=malloc(sizeof(char)*(buffer_len));
-        if(L_DEBUG_OUTPUT_xml) fprintf(stdout,"buffer_len = %ld\n",buffer_len);
+    /* Allocate our buffer to that size. */
+    if(L_DEBUG_OUTPUT_xml) fprintf(stdout,"buffer_len = %ld\n",buffer_len);
+    buffer=malloc(sizeof(char)*(buffer_len));
 
-        /* Go back to the start of the file. */
-        if (fseek(fp,0L,SEEK_SET) != 0) {
-            fprintf(stderr,"Error while reading file\n");
-            return(EXIT_NULL_VAL);
-        }
+    /* Go back to the start of the file. */
+    if (gzseek(fp,0L,SEEK_SET) != 0) {
+        fprintf(stderr,"Error while moving back to start of file\n");
+        return(EXIT_NULL_VAL);
+     }
 
-        /* Read the entire file into memory. */
-        if (fread(buffer,sizeof(char),buffer_len,fp) <= 0) {
-            fprintf(stderr,"Error while reading file\n");
-            return(EXIT_NULL_VAL);
-        }
-    } //if (fseek(fp,0L,SEEK_END) == 0) {
-    fclose(fp);
+    /* Read the entire file into memory. */
+    if (gzread(fp,buffer,buffer_len) <= 0) {
+        fprintf(stderr,"Error while reading file\n");
+        return(EXIT_NULL_VAL);
+    }
+
+//    if(L_DEBUG_OUTPUT_xml) fprintf(stdout,"buffer = %s\n",buffer);
+
+    gzclose (fp);
 
     *return_buffer=buffer;
 
