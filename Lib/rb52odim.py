@@ -414,7 +414,7 @@ def mergeOdimScans2Pvol(rio_arr, out_fullfile=None, return_rio=False, interval=N
                 if(hasattr(scan,'beamV')): pvol.beamwV = scan.beamwV
 
                 pvol.addAttribute("how/task", taskname)
-       		for s_attrib in [
+       	        for s_attrib in [
                     "how/TXtype",
                     "how/beamwH", #optional
                     "how/beamwV", #optional
