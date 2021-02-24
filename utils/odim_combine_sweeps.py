@@ -48,7 +48,7 @@ def combine(options):
         else:
             scan=rio.object
             #scan.getAttributeNames()
-            #print scan.getAttribute('how/task')
+            #print(scan.getAttribute('how/task'))
             #import pdb; pdb.set_trace()
 
             if pvol is None: #clone
