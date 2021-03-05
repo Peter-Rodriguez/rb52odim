@@ -5,7 +5,7 @@
         <label>S-band at Egbert (RUAD)</label>
         <operator>RUAD</operator>
         <band>S</band>
-        <odim_node>casxx</odim_node>
+        <odim_node>casts</odim_node>
         <locale>Egbert</locale>
         <admin_state>ON</admin_state>
         <country>Canada</country>
