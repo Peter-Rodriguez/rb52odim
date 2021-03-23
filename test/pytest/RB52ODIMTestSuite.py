@@ -1,5 +1,5 @@
 '''
-Copyright (C) 2016 The Crown (i.e. Her Majesty the Queen in Right of Canada)
+Copyright (C) 2021 The Crown (i.e. Her Majesty the Queen in Right of Canada)
 
 This file is an add-on to RAVE.
 
@@ -17,11 +17,11 @@ You should have received a copy of the GNU Lesser General Public License
 along with RAVE.  If not, see <http://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------*/
 
-Test suite for rave_ec
+Test suite for rb52odim
 
 @file
-@author Daniel Michelson, Environment and Climate Change Cananda
-@date 2016-06-10
+@author Peter Rodriguez, Environment and Climate Change Cananda
+@date 2021-02-24
 '''
 import unittest, os, sys
 import _rave
@@ -49,7 +49,7 @@ if __name__ == '__main__':
   # do all
   suite = unittest.TestLoader().loadTestsFromTestCase(rb52odimTest)
 
-  #verbosity control added >=2.7 (crispus has 2.6.6!)
+  #verbosity control added >=2.7
   #".", "E" or "F" for "ok", "error" and "fail" written by self.AssertXXX method if verbose>=1
   result = unittest.TextTestRunner(verbosity=3).run(suite)
   #print('result : %s' % result)
