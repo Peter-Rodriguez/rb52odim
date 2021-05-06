@@ -380,8 +380,6 @@ class rb52odimTest(unittest.TestCase):
         compile_pvol = rb52odim.compileVolumeFromVolumes(volumes, adjustTime=False)
         combine_rio = rb52odim.combineRB5(ifiles, return_rio=True) #no adjustTime() functionality
         combine_pvol = combine_rio.object
-        
-#        import pdb; pdb.set_trace()
         validateTopLevel(self, compile_pvol, combine_pvol)
         for i in range(compile_pvol.getNumberOfScans()):
             compile_scan = compile_pvol.getScan(i)

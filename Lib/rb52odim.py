@@ -391,7 +391,6 @@ def mergeOdimScans2Pvol(rio_arr, out_fullfile=None, return_rio=False, interval=N
             scan=rio.object
             #scan.getAttributeNames()
             #print(scan.getAttribute('how/task'))
-            #import pdb; pdb.set_trace()
 
             if pvol is None: #clone
                 pvol=_polarvolume.new()
@@ -415,10 +414,10 @@ def mergeOdimScans2Pvol(rio_arr, out_fullfile=None, return_rio=False, interval=N
                 if(hasattr(scan,'beamV')): pvol.beamwV = scan.beamwV
 
                 pvol.addAttribute("how/task", taskname)
-                for s_attrib in [
+       	        for s_attrib in [
                     "how/TXtype",
-#not in REF                    "how/beamwH", #optional
-#not in REF                    "how/beamwV", #optional
+                    "how/beamwH", #optional
+                    "how/beamwV", #optional
                     "how/polmode",
                     "how/poltype",
                     "how/software",
@@ -533,6 +532,11 @@ def compile_big_scan(big_scan,scan,mb):
 
     sparam=sparam_arr[0]
     param=scan.getParameter(sparam)
+#    print('sparam',sparam)
+
+
+
+
 
 
     if big_scan is None:
@@ -548,6 +552,11 @@ def compile_big_scan(big_scan,scan,mb):
         scan.addParameter(param) #add orphan
         sparam=new_sparam #update sparam
 
+#    big_sparam_arr=big_scan.getParameterNames()
+#    print('big_sparam_arr',big_sparam_arr)
+    #WARNING : Different number of rays/bins for various parameters are not allowed (polarscan.c:566)
+    #*** AttributeError: Failed to add parameter to scan
+    #check sorting of scans
     big_scan.addParameter(param) #add
 
     #expand TXpower attributes by single- & dual-pol params
@@ -587,7 +596,9 @@ def compile_big_pvol(big_pvol,pvol,mb,iMEMBER):
             big_scan=None #begin with empty scans (removes existing param)
         else:
             big_scan=big_pvol.getScan(iSCAN)
+#            print('big_scan',iSCAN,np.degrees(big_scan.elangle),big_scan.nrays,big_scan.nbins)
         this_scan=pvol.getScan(iSCAN)
+#        print('this_scan',iSCAN,np.degrees(this_scan.elangle),this_scan.nrays,this_scan.nbins)
         big_scan=compile_big_scan(big_scan,this_scan,mb)
         big_pvol.removeScan(iSCAN)
         big_pvol.addScan(big_scan)
