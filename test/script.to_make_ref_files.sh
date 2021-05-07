@@ -1,36 +1,22 @@
 #!/bin/bash
 
-base_dir=~/Projects/BALTRAD/rb52odim
+#execute from test dir
+base_dir=$(pwd)/..
 cd ${base_dir}/test
 
-#NOTE: must make clean from ${base_dir} for modules/_rb52odim.so to update too
-#and make install
-#rm Lib/*.pyc
+#NOTE do first: for ${base_dir}/src/rb5_2_odim command-line version (remember to 'make -f Makefile.w_rb5_2_odim_main')
+export RB52ODIMCONFIG=${base_dir}/config 
+
+#NOTE: must 'make clean' from ${base_dir} for modules/_rb52odim.so to update too
+#and 'make install'
+rm ${base_dir}/Lib/*.pyc
 #rm */*.so #src/librb52odim.so & modules/_rb52odim.so
 
-#NOTE: for ${base_dir}/src/rb5_2_odim command-line version (remember to make -f Makefile.w_rb5_2_odim_main)
-export RB52ODIMCONFIG=~/Projects/BALTRAD/rb52odim/config 
-
-##check and modify as needed
-mbak_suffix=2018-Mar-21.bak
-#bak_suffix=2020-Dec-08.bak
-#
-##REF_H5_VOL & _AZI
-#cp -pv 2016092614304000dBZ.vol.ref.h5 2016092614304000dBZ.vol.ref.h5.${bak_suffix}
-#cp -pv 2016081612320300dBZ.azi.ref.h5 2016081612320300dBZ.azi.ref.h5.${bak_suffix}
-#
-##REF_H5_FILELIST
-#cp -pv Dopvol1_A.azi/caxah_dopvol1a_20151209T1650Z.ref.h5 Dopvol1_A.azi/caxah_dopvol1a_20151209T1650Z.ref.h5.${bak_suffix}
-#
-##REF_H5_TARBALL_DOPVOL1B
-#cp -pv caxah_dopvol1b_20151209T1650Z.azi.ref.h5 caxah_dopvol1b_20151209T1650Z.azi.ref.h5.${bak_suffix}
-#
-##REF_H5_MERGED_PVOL
-#cp -pv caxah_dopvol_20151209T1650Z.ref.h5 caxah_dopvol_20151209T1650Z.ref.h5.${bak_suffix}
-#
-##REF CASRA_H5_SCAN & _PVOL
-#cp -pv CASRA_20171215200514_scan.ref.h5 CASRA_20171215200514_scan.ref.h5.${bak_suffix}
-#cp -pv CASRA_20171215200003_pvol.ref.h5 CASRA_20171215200003_pvol.ref.h5.${bak_suffix}
+##check and modify as needed, added to .gitignore
+bak_suffix=2018-Mar-21.bak
+bak_suffix=2020-Dec-08.bak
+bak_suffix=2021-May-06.bak
+rsync -av ref ref_${bak_suffix}
 
 echo Making... REF_H5_VOL and REF_H5_AZI
 ${base_dir}/src/rb5_2_odim -i org/2016092614304000dBZ.vol -o ref/2016092614304000dBZ.vol.ref.h5
@@ -119,6 +105,7 @@ echo
 
 echo Making... REF_CASRA_H5_PVOL
 #see ./utils/polar_merger.py for hardcoded entries
+[ -d tmp ] || mkdir tmp #added to .gitignore
 ${base_dir}/src/rb5_2_odim -i org/CASRA_2017121520000300dBuZ.vol.gz   -o tmp/CASRA_2017121520000300dBuZ.vol.h5.tmp
 ${base_dir}/src/rb5_2_odim -i org/CASRA_2017121520000300dBZ.vol.gz    -o tmp/CASRA_2017121520000300dBZ.vol.h5.tmp
 ${base_dir}/src/rb5_2_odim -i org/CASRA_2017121520000300PhiDP.vol.gz  -o tmp/CASRA_2017121520000300PhiDP.vol.h5.tmp

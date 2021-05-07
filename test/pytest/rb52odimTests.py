@@ -345,6 +345,13 @@ class rb52odimTest(unittest.TestCase):
     def testReadParameters(self):
         scan = rb52odim.readParameterFiles([self.CASRA_AZI_dBZ])[0]
         ref = _raveio.open(self.REF_CASRA_H5_SCAN).object
+        #CASRA_AZI_dBZ only processed by singleRB5()
+        #there are no expand_txpower_by_pol() attribs
+        #as REF_CASRA_H5_SCAN via compile_big_scan()
+        #add extra dual-/single-pol attribs, unfortunately cannot scan.removeAttribute()
+        for attrib in ref.getAttributeNames():
+            if any(substr in attrib for substr in ['single-pol_','dual-pol_']):
+                scan.addAttribute(attrib,ref.getAttribute(attrib))
         for pname in ref.getParameterNames():
             if pname != 'DBZH':
                 ref.removeParameter(pname)

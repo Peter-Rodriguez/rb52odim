@@ -286,7 +286,7 @@ int populateScan(PolarScan_t* scan, strRB5_INFO *rb5_info, int this_slice) {
         // /omega/dmichelson/projects/rave/librave/toolbox/polarscan.c:55 struct _PolarScan_t->azangle DOES NOT EXIST
         PolarScan_setElangle(scan, rb5_info->angle_deg_arr[this_slice]*DEG_TO_RAD); // FAKE to fool polar_odim_io.c check of "where/elangle"
     } else {
-        PolarScan_setA1gate (scan, rb5_info->iray_0degN   [this_slice]); // Index of the first azimuth gate radiated in the scan
+        PolarScan_setA1gate (scan, rb5_info->nrays[this_slice] - rb5_info->iray_0degN[this_slice]); // Index of the first azimuth gate radiated in the scan (note, CCW rotation)
         PolarScan_setElangle(scan, rb5_info->angle_deg_arr[this_slice]*DEG_TO_RAD); /* Radians! Use constant DEG_TO_RAD if necessary. */
     } 
 

@@ -534,11 +534,6 @@ def compile_big_scan(big_scan,scan,mb):
     param=scan.getParameter(sparam)
 #    print('sparam',sparam)
 
-
-
-
-
-
     if big_scan is None:
         big_scan=scan.clone() #clone
         big_scan.removeParameter(sparam) #remove existing param
